@@ -526,19 +526,110 @@ class Backend extends Admin_Controller
 			function view_amc_purchase_offers($service_id)
 		{
 			$data= $this->data;
-		$data['page_title'] = 'AMC Purchase Offers';
+		$data['page_title'] = 'Detail Information of AMC';
 		$data['form_action'] = 'Backend/view_amc_purchase_offers';
  		$data['view_amc_purchase_offers'] = $this->Admin_model->view_amc_purchase_offers($service_id);
- 		// print_r($data['view_amc_purchase_offers'] ); exit();
+ 		 //print_r($data['view_amc_purchase_offers'] ); exit();
 			$this->view('view_amc_purchase_offers', $data);
 		}
 
-			function delete_amc_purchase_offers()
+
+		function edit_amc_purchase_offers($service_id)
 		{
 			$data= $this->data;
+		$data['page_title'] = 'Edit Detail Information of AMC';
+		$data['form_action'] = 'Backend/edit_amc_purchase_offers';
+		$service_record = $this->Admin_model->getservicerecord($service_id);
+		//  print_r($service_record);exit();
+		$data['customer_code']=	$service_record->customer_code;
+		$data['customer_name']= $service_record->customer_name;
+		$data['customer_address']= $service_record->customer_address;
+		$data['customer_city']= $service_record->customer_city;
+		 $data['pin_code']= $service_record->pin_code;
+		$data['customer_mobile']= $service_record->customer_mobile;
+		$data['product_category']= $service_record->product_category;
+		$data['machine_serial']= $service_record->machine_serial;
+		$data['model']= $service_record->model;
+		$data['brand']= $service_record->brand;
+		$data['date_of_purchase']= $service_record->date_of_purchase;
+		 $data['picture_machine']= $service_record->picture_machine;
+		$data['certified']= $service_record->certified;
+		$data['machine_status']= $service_record->machine_status;
+		$data['technecian']= $service_record->technecian;
+		$data['icr_no']= $service_record->icr_no;
+		$data['icr_date']= $service_record->icr_date;
+		$data['free_cost']= $service_record->free_cost;
+		$data['chq_picture']=$service_record->chq_picture;
+		$data['amc_Date']= $service_record->amc_Date;
+		$data['amc_end_date']= $service_record->amc_end_date;
+		$data['payment_mode']= $service_record->payment_mode;
+		$data['chq_no']= $service_record->chq_no;
+		$data['icr_picture']=$service_record->icr_picture;
+		$data['chq_amount']= $service_record->chq_amount;
+		$data['technecian_name']= $service_record->technecian_name;
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('customer_name','Customer Name','trim|required');
+		$this->form_validation->set_rules('customer_code', 'Customer Code', 'trim|required|max_length[10]');
+		$this->form_validation->set_rules('model', 'Model', 'trim|required');
+		$this->form_validation->set_rules('technecian', 'Technecian Mobile No.', 'trim|required');
 		
- 		$data['amc_purchase_offers'] = $this->Admin_model->delete_amc_purchase_offers();
+		
+
+		if ($this->form_validation->run() == false) {
+			$this->view('edit_amc_purchase_offers', $data);
+		} else{
+            $save['customer_code']=$this->input->post('customer_code');
+            $save['customer_name']= $this->input->post('customer_name');
+            $save['customer_address']= $this->input->post('customer_address');
+            $save['customer_city']= $this->input->post('customer_city');
+            $save['pin_code']= $this->input->post('pin_code');
+            $save['customer_mobile']= $this->input->post('customer_mobile');
+            $save['product_category']= $this->input->post('product_category');
+            $save['machine_serial']= $this->input->post('machine_serial');
+            $save['model']= $this->input->post('model');
+            $save['brand']= $this->input->post('brand');
+            $save['date_of_purchase']= $this->input->post('date_of_purchase');
+         $save['picture_machine']= $this->input->post('picture_machine');
+            $save['certified']= $this->input->post('certified');
+            $save['machine_status']= $this->input->post('machine_status');
+            $save['technecian']= $this->input->post('technecian');
+            $save['icr_no']= $this->input->post('icr_no');
+            $save['icr_date']= $this->input->post('icr_date');
+            $save['free_cost']= $this->input->post('free_cost');
+             $save['icr_picture']= $this->input->post('icr_picture');
+            $save['amc_Date']= $this->input->post('amc_Date');
+            $save['amc_end_date']= $this->input->post('amc_end_date');
+            $save['payment_mode']= $this->input->post('payment_mode');
+            $save['chq_no']= $this->input->post('chq_no');
+             $save['chq_picture']= $this->input->post('chq_picture');
+            $save['chq_amount']= $this->input->post('chq_amount');
+            $save['technecian_name']= $this->input->post('technecian_name');
+            $save['service_type'] = 1;
+
+
+            $this->Admin_model->edit_amc_purchase_offers($service_id, $save);
+    
+            redirect('admin/Backend/edit_amc_purchase_offers/');
+        }
+		}
+
+			function delete_amc_purchase_offers($service_id)
+		{
+			$data= $this->data;
+ 		$data['amc_purchase_offers'] = $this->Admin_model->delete_amc_purchase_offers($service_id);
 			$this->view('amc_purchase_offers', $data);
 		}
+
+		function search_customer()
+		{
+			$data= $this->data;	
+			$save['customer_name'] = $this->input->post('customer_name');
+			$save['service_type'] = 1;					
+			$data['amc_purchase_offers'] = $this->Admin_model->search_customer($save);
+			print_r($data['search_customer']); exit();
+			
+			$this->view('amc_purchase_offers', $data);
+		}
+
 
 }

@@ -54,245 +54,236 @@
                  
                </div>
               <!-- .row -->
-
- <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-info">
-                         <?php if ($flashdata = $this->session->flashdata('success')){  ?>
-                          <div class="alert alert-success">
-                           <?php echo $flashdata;  ?>
-                          </div>
-                        <?php } ?>
-
-
-                            <div class="panel-wrapper collapse in" aria-expanded="true">
-                                <div class="panel-body">
-                                   <?php echo form_open_multipart($form_action) ?>
-                                       <div class="form-body">
-                                            <h3 class="box-title">Fill All Details</h3>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Customer Code*</label>
-                                                        <input type="text" name="customer_code"class="form-control" placeholder="Enter Code"> <span class="help-block"> <?php echo form_error('customer_code'); ?> </span> </div>
-
-
-                                                </div>
-                                                <!--/span-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">Customer Name*</label>
-                                                        <input type="text" name="customer_name"  class="form-control" placeholder="Enter Name"> <span class="help-block">  <?php echo form_error('customer_name'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                            </div>
-                                         <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Customer Address*</label>
-                                                        <input type="text" name="customer_address"class="form-control" placeholder="Enter Address"> <span class="help-block">  <?php echo form_error('customer_address'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">Customer City*</label>
-                                                        <input type="text" name="customer_city"  class="form-control" placeholder="Enter City"> <span class="help-block">  <?php echo form_error('customer_city'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                            </div>
-                                       
-                                        <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Pin Code*</label>
-                                                        <input type="text" name="pin_code"class="form-control" placeholder="Enter Pin Code"> <span class="help-block">  <?php echo form_error('pin_code'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">Customer Mobile Number*</label>
-                                                        <input type="text" name="customer_mobile"  class="form-control" placeholder="Enter Mobile No."> <span class="help-block">  <?php echo form_error('customer_mobile'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                            </div>
-
-<div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Product Category</label>
-                                                        <?php  
-                                                        $options = array('Washing Machine'=>'Washing Machine','Kitchen Product'=>'Kitchen Product','Health Product'=>'Health Product','American Samora'=>'American Samora');
-                                                        echo form_dropdown('product_category', $options,set_value('Washing Machine'), 'class="form-control"'); ?>
-                                                       <!--  <input type="text" name="product_category"class="form-control" placeholder="select product category"> -->
-
-                                                         <span class="help-block">  <?php echo form_error('product_category'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">Machine Serial Number</label>
-                                                        <input type="text" name="machine_serial"  class="form-control" placeholder="Enter Serial Number"> <span class="help-block">  <?php echo form_error('machine_serial'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                            </div>
-
-
-<div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Model</label>
-                                                        <input type="text" name="model"class="form-control" placeholder="Enter Model"> <span class="help-block">  <?php echo form_error('model'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">Brand</label>
-                                                        <input type="text" name="brand"  class="form-control" placeholder="Enter Brand"> <span class="help-block">  <?php echo form_error('brand'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                            </div>
-<div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Date of Purchase</label>
-                                                        <input type="date" name="date_of_purchase"class="form-control" placeholder="Enter Date of Purchase"> <span class="help-block">  <?php echo form_error('date_of_purchase'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">Picture of Machine</label>
-                                                        <input type="file" name="picture_machine"  class="form-control" placeholder="upload Picture of Machine"> <span class="help-block">  <?php echo form_error('picture_machine'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Certified by Service Center</label>
-                                                        <input type="text" name="certified"class="form-control" placeholder="certified"> <span class="help-block">  <?php echo form_error('certified'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">Machine Status</label>
-                                                        <input type="text" name="machine_status"  class="form-control" placeholder="Enter Machine Status"> <span class="help-block">  <?php echo form_error('machine_status'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                            </div>
-                                              <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Technecian Mobile No.</label>
-                                                        <input type="text" name="technecian"class="form-control" placeholder="Enter technecian Mobile No."> <span class="help-block">  <?php echo form_error('technecian'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">ICR No.</label>
-                                                        <input type="text" name="icr_no"  class="form-control" placeholder="Enter ICR No."> <span class="help-block">  <?php echo form_error('icr_no'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                            </div>
-
-                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">ICR Date</label>
-                                                        <input type="date" name="icr_date"class="form-control" placeholder="Enter ICR Date"> <span class="help-block">  <?php echo form_error('icr_date'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">Free of Cost Material Given</label>
-                                                        <input type="text" name="free_cost"  class="form-control" placeholder="Yes"> <span class="help-block">  <?php echo form_error('free_cost'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                            </div>
-
-                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">ICR Picture</label>
-                                                        <input type="file" name="icr_picture"class="form-control" placeholder="Enter Pin Code"> <span class="help-block">  <?php echo form_error('icr_picture'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">AMC Start Date</label>
-                                                        <input type="date" name="amc_Date"  class="form-control" placeholder="Enter Start Date"> <span class="help-block">  <?php echo form_error('amc_Date'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">AMC End Date</label>
-                                                        <input type="date" name="amc_end_date"class="form-control" placeholder="Enter AMC End Date"> <span class="help-block">  <?php echo form_error('amc_end_date'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">Payment Mode </label>
-                                                        <select class="form-control" name='payment_mode'>
-                                                            <option value="cash">cash in Hand</option>
-                                                            <option value="bycard">By Card</option>
-                                                              <option value="netbanking">Net Banking</option>
-                                                        </select> 
-
-<span class="help-block">  <?php echo form_error('payment_mode'); ?></span> 
-
-                                                    </div>
-                                                </div>
-                                                <!--/span-->
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">CHQ No</label>
-                                                        <input type="text" name="chq_no"class="form-control" placeholder="Enter CHQ No"> <span class="help-block">  <?php echo form_error('chq_no'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">CHQ Picture</label>
-                                                        <input type="file" name="chq_picture"  class="form-control" placeholder="Enter CHQ Picture"> <span class="help-block">  <?php echo form_error('chq_picture'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">CHQ Amount</label>
-                                                        <input type="text" name="chq_amount"class="form-control" placeholder="Enter CHQ Amount"> <span class="help-block">  <?php echo form_error('chq_amount'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">Technecian Name*</label>
-                                                        <input type="text" name="technecian_name"  class="form-control" placeholder="Enter Technecian Name"> <span class="help-block">  <?php echo form_error('technecian_name'); ?></span> </div>
-                                                </div>
-                                                <!--/span-->
-                                            </div>
-
-                                        </div>
-                                        <div class="form-actions">
-                                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                            
-                                        </div>
-                                    </form>
+             
+              <div class="row">
+                  
+                    <div class="col-md-4 col-xs-12">
+                   
+                        <div class="white-box">
+                           
+                            <div class="user-bg text-center" style="display: flex; justify-content:center; align-items:center; "> <img width="100%" height="100% alt="user" src="<?php echo base_url('uploads/customer_photo')?>/<?php echo $view_amc_purchase_offers->picture_machine; ?>"  > </div><br>
+                            <center><h4 class="center"><strong>Machine Image</strong></h4> </center> 
+                            <div class="user-btm-box">
+                                <!-- .row -->
+                              
+                                <div class="row text-center m-t-10">
+                                    <div class="col-md-6 b-r"><strong>Technician Name</strong>
+                                        <p> <?php echo $view_amc_purchase_offers->technecian_name; ?> </p>
+                                    </div>
+                                    <div class="col-md-6"><strong>Technicial Number</strong>
+                                        <p><?php echo $view_amc_purchase_offers->technecian; ?></p>
+                                    </div>
                                 </div>
+                                <!-- /.row -->
+                                <hr>
+                                <!-- .row -->
+                                <div class="row text-center m-t-10">
+                                    <div class="col-md-6 b-r"><strong>Paid /unpaid by Client</strong>
+                                        <p><?php echo $view_amc_purchase_offers->paid ==0 ? 'Unpaid' :'paid'; ?></p>
+                                    </div>
+                                    <div class="col-md-6"><strong>Machine Status</strong>
+                                        <p><?php echo $view_amc_purchase_offers->machine_status; ?></p>
+                                    </div>
+                                </div>
+                                <!-- /.row --><br>
+                                <hr>
+                                <div class="row text-center m-t-10">
+                                    
+                               
+                                    <div class="col-md-12">
+                                        <p style="display: flex; justify-content:center; align-items:center; "><img src="<?php echo base_url('uploads/customer_photo/'); echo $view_amc_purchase_offers->icr_picture; ?>" class="zoom"style="width:100px; height:100px;"></p>
+                                        <strong>ICR Picture</strong>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p style="display: flex; justify-content:center; align-items:center; "><img src="<?php echo base_url('uploads/customer_photo/');echo $view_amc_purchase_offers->chq_picture; ?>" class="zoom" style="width:100px;height:100px;"></p>
+                                        <strong>Chaque Picture</strong>
+                                    </div>
+                                    
+                                </div>
+                                <!-- /.row -->
+                               
+                                <hr>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-8 col-xs-12">
+                        <div class="white-box">
+                            <div class="row">
+                                <div class="col-md-4 col-xs-6 b-r"> <strong>Customer Name</strong>
+                                    <br>
+                                    <p class="text-muted"><?php echo $view_amc_purchase_offers->customer_name; ?></p>
+                                </div>
+                                <div class="col-md-4 col-xs-6 b-r"> <strong>Customer Mobile</strong>
+                                    <br>
+                                    <p class="text-muted"><?php echo $view_amc_purchase_offers->customer_mobile; ?></p>
+                                </div>
+                                <div class="col-md-4 col-xs-6 b-r"> <strong>Customer Email</strong>
+                                    <br>
+                                    <p class="text-muted"><?php echo $view_amc_purchase_offers->customer_email; ?></p>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="row">
+                            <div class="col-md-12 col-xs-6 b-b"><hr>
+                                    <strong>Customer Address</strong> <br><?php echo $view_amc_purchase_offers->customer_address; ?><br><br>
+                            </div>
+                          
+                            <div class="col-md-6 col-xs-6 b-r"><br> <strong> City</strong><br><?php echo $view_amc_purchase_offers->customer_city; ?></div> 
+                            <div class="col-md-6 col-xs-6 b-r"> <br><strong> Pin Code</strong><br><?php echo $view_amc_purchase_offers->pin_code; ?></div>
+                            
+                            </div>
+                            <hr>
+
+                            <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> 
+                            <strong>Machine Serial</strong>  <br>            
+                            <p><?php echo $view_amc_purchase_offers->machine_serial; ?></p>
+                             </div>
+                             <div class="col-md-4 col-xs-6 ">  
+                             <strong>Model </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->model; ?></p>
+                             </div>
+
+                             <div class="col-md-4 col-xs-6 ">  
+                             <strong>Brand </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->brand; ?></p>
+                             </div>
+
+                            </div>
+                           <hr>
+                           <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> 
+                            <strong>Purchase Date</strong>  <br>            
+                            <p><?php echo $view_amc_purchase_offers->date_of_purchase; ?></p>
+                             </div>
+                             <div class="col-md-4 col-xs-6 ">  
+                             <strong>ICR Date </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->icr_date; ?></p>
+                             </div>
+
+                             <div class="col-md-4 col-xs-6 ">  
+                             <strong>ICR No </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->icr_no; ?></p>
+                             </div>
+
+                            </div>
+                           <hr>
+
+                           <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> 
+                            <strong>Certified</strong>  <br>            
+                            <p><?php echo $view_amc_purchase_offers->certified; ?></p>
+                             </div>
+                             <div class="col-md-4 col-xs-6 ">  
+                             <strong>AMC Start Date </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->amc_Date; ?></p>
+                             </div>
+
+                             <div class="col-md-4 col-xs-6 ">  
+                             <strong>AMC End Date </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->amc_end_date; ?></p>
+                             </div>
+
+                            </div>
+                           <hr>
+                           
+                           <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> 
+                            <strong>Certified</strong>  <br>            
+                            <p><?php echo $view_amc_purchase_offers->certified; ?></p>
+                             </div>
+                             <div class="col-md-4 col-xs-6 ">  
+                             <strong>AMC Start Date </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->amc_Date; ?></p>
+                             </div>
+
+                             <div class="col-md-4 col-xs-6 ">  
+                             <strong>AMC End Date </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->amc_end_date; ?></p>
+                             </div>
+
+                            </div>
+                           <hr>
+                           <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r"> 
+                            <strong>Free Cost</strong>  <br>            
+                            <p><?php echo $view_amc_purchase_offers->free_cost; ?></p>
+                             </div>
+                             <div class="col-md-4 col-xs-6 ">  
+                             <strong>ICR Amount </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->icr_amount  ; ?></p>
+                             </div>
+
+                             <div class="col-md-4 col-xs-6 ">  
+                             <strong>Payment Mode </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->payment_mode; ?></p>
+                             </div>
+
+                            </div>
+                           <hr>
+                           
+                           <div class="row">
+                            <div class="col-md-4 col-xs-6 b-r" > 
+                            <strong>Dealer Invoice Pic</strong>  <br>            
+                            <p style="display:flex; justify-content:center; align-items:center; "><img src="<?php echo base_url('uploads/customer_photo/');echo $view_amc_purchase_offers->dealer_invoice_pic; ?>"class="zoom" style="width:100px; height:100px;"></p>
+                             </div>
+                             <div class="col-md-4 col-xs-6 ">  
+                             <strong>Dealer Date </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->dealer_date; ?></p>
+                             </div>
+
+                             <div class="col-md-4 col-xs-6 ">  
+                             <strong>Company Warranty Start Date </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->compay_warranty_start; ?></p>
+                             </div>
+
+                            </div>
+                           <hr>
+                           
+                           <div class="row">
+                           <div class="col-md-4 col-xs-6 ">  
+                             <strong>Comany Warranty End </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->compay_warranty_end; ?></p>
+                             </div>
+                            <div class="col-md-4 col-xs-6 b-r"> 
+                            <strong>Chq Number</strong>  <br>            
+                            <p><?php echo $view_amc_purchase_offers->chq_no; ?></p>
+                             </div>
+                             <div class="col-md-4 col-xs-6 ">  
+                             <strong>Chq Amount </strong> <br>        
+                             <p><?php echo $view_amc_purchase_offers->chq_amount; ?></p>
+                             </div>
+
+                             
+
+                            </div>
+                           <hr>
+                            
+                           
+                           
+                            
+                            
+                           
+                           
+                          
+                           
+
+
+
+
+                           
+                        
+                        </div>
+                    </div>
                 </div>
+
+
+
+                            </div>
+                        </div>
+                  
               
                 <!-- /.row -->
                
-            </div>
-
-        </div>
-  
+          

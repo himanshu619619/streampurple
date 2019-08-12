@@ -38,5 +38,34 @@ class Admin_model extends CI_model
 		return $this->db->select('*')->where('service_id',$service_id)->get('service_record')->row();
 
 	}
+
+		function  delete_amc_purchase_offers($service_id)
+	{
+
+		return $this->db->where('service_id',$service_id)->delete('service_record');
+
+	}
+	function edit_amc_purchase_offers($service_id, $save)
+	{
+	
+		
+			$this->db->where('service_id',$service_id)->update('service_record',$save);
+	
+	}
+	function getservicerecord($service_id)
+	{
+
+		return $this->db->select('*')->where('service_id',$service_id)->get('service_record')->row();
+
+	}
+
+	function search_customer($save)
+	{
+
+		return $this->db->select('*')->where('service_type',$save['service_type'])->like('customer_name',$save['customer_name'])->get('service_record')->result();
+
+	}
+
+
 }
  
