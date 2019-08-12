@@ -527,7 +527,7 @@ class Backend extends Admin_Controller
 		{
 			$data= $this->data;
 		$data['page_title'] = 'AMC Purchase Offers';
-		$data['form_action']; = 'Backend/view_amc_purchase_offers'
+		$data['form_action'] = 'Backend/view_amc_purchase_offers';
  		$data['view_amc_purchase_offers'] = $this->Admin_model->view_amc_purchase_offers($service_id);
  		// print_r($data['view_amc_purchase_offers'] ); exit();
 			$this->view('view_amc_purchase_offers', $data);
