@@ -86,17 +86,14 @@
                           </tr>
                       </thead>
                       <tbody>
+                      <?php if($amc_purchase_offers) { ?>
                          <?php $no=1; foreach ($amc_purchase_offers as $key => $value) { ?>
                           <tr>
                               <td><?php echo $no++; ?></td>
                               <td><?php echo $value->customer_code; ?></td>
                               <td><?php echo $value->customer_name; ?></td>
                               <td><?php echo $value->customer_address; ?></td>
-                              <td><?php echo($value->paid == 0 ? "unpaid": "paid");  ?></td>
-                            
-                          
-                            
-                         
+                              <td><?php echo($value->paid == 0 ? "unpaid": "paid");  ?></td>                        
                               <td class="text-nowrap">
                                   <a href="<?php echo base_url('admin/backend/view_amc_purchase_offers/'.$value->service_id) ?>" data-toggle="tooltip" data-original-title="View"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
                                   <a href="<?php echo base_url('admin/backend/edit_amc_purchase_offers/'.$value->service_id) ?>" data-toggle="tooltip" data-original-title="edit"> <i class="fa fa-edit text-inverse m-r-10"></i> </a>
@@ -104,6 +101,13 @@
                               </td>
                           </tr>
                           <?php } ?>
+
+                          <?php }else{ ?> 
+                             <tr>
+                             <td colspan="6"> <center>   <h5>No Record Found</h5></center></td>
+                            </tr>
+                          <?php } ?>
+
                       </tbody>
                   </table>
               </div>

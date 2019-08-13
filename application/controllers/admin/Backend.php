@@ -536,23 +536,24 @@ class Backend extends Admin_Controller
 
 		function edit_amc_purchase_offers($service_id)
 		{
+			
 			$data= $this->data;
 		$data['page_title'] = 'Edit Detail Information of AMC';
-		$data['form_action'] = 'Backend/edit_amc_purchase_offers';
+		$data['form_action'] = 'Admin/Backend/edit_amc_purchase_offers/'.$service_id;
 		$service_record = $this->Admin_model->getservicerecord($service_id);
-		//  print_r($service_record);exit();
+		//print_r($service_record);exit();
 		$data['customer_code']=	$service_record->customer_code;
 		$data['customer_name']= $service_record->customer_name;
 		$data['customer_address']= $service_record->customer_address;
 		$data['customer_city']= $service_record->customer_city;
-		 $data['pin_code']= $service_record->pin_code;
+		$data['pin_code']= $service_record->pin_code;
 		$data['customer_mobile']= $service_record->customer_mobile;
 		$data['product_category']= $service_record->product_category;
 		$data['machine_serial']= $service_record->machine_serial;
 		$data['model']= $service_record->model;
 		$data['brand']= $service_record->brand;
 		$data['date_of_purchase']= $service_record->date_of_purchase;
-		 $data['picture_machine']= $service_record->picture_machine;
+		$data['picture_machine']= $service_record->picture_machine;
 		$data['certified']= $service_record->certified;
 		$data['machine_status']= $service_record->machine_status;
 		$data['technecian']= $service_record->technecian;
@@ -569,15 +570,16 @@ class Backend extends Admin_Controller
 		$data['technecian_name']= $service_record->technecian_name;
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_rules('customer_name','Customer Name','trim|required');
-		$this->form_validation->set_rules('customer_code', 'Customer Code', 'trim|required|max_length[10]');
-		$this->form_validation->set_rules('model', 'Model', 'trim|required');
-		$this->form_validation->set_rules('technecian', 'Technecian Mobile No.', 'trim|required');
+		 $this->form_validation->set_rules('customer_code', 'Customer Code', 'trim|required|max_length[10]');
+			$this->form_validation->set_rules('model', 'Model', 'trim|required');
+			$this->form_validation->set_rules('technecian', 'Technecian Mobile No.', 'trim|required');
 		
 		
 
 		if ($this->form_validation->run() == false) {
 			$this->view('edit_amc_purchase_offers', $data);
 		} else{
+			
             $save['customer_code']=$this->input->post('customer_code');
             $save['customer_name']= $this->input->post('customer_name');
             $save['customer_address']= $this->input->post('customer_address');
@@ -589,7 +591,7 @@ class Backend extends Admin_Controller
             $save['model']= $this->input->post('model');
             $save['brand']= $this->input->post('brand');
             $save['date_of_purchase']= $this->input->post('date_of_purchase');
-         $save['picture_machine']= $this->input->post('picture_machine');
+        	$save['picture_machine']= $this->input->post('picture_machine');
             $save['certified']= $this->input->post('certified');
             $save['machine_status']= $this->input->post('machine_status');
             $save['technecian']= $this->input->post('technecian');
@@ -606,12 +608,13 @@ class Backend extends Admin_Controller
             $save['technecian_name']= $this->input->post('technecian_name');
             $save['service_type'] = 1;
 
-
+			 //print_r($save); exit();
             $this->Admin_model->edit_amc_purchase_offers($service_id, $save);
     
-            redirect('admin/Backend/edit_amc_purchase_offers/');
-        }
+            redirect('admin/Backend/amc_purchase_offers/');
 		}
+		
+	}
 
 			function delete_amc_purchase_offers($service_id)
 		{
@@ -623,10 +626,11 @@ class Backend extends Admin_Controller
 		function search_customer()
 		{
 			$data= $this->data;	
+			$data['page_title'] = 'Search Service Record';
 			$save['customer_name'] = $this->input->post('customer_name');
 			$save['service_type'] = 1;					
 			$data['amc_purchase_offers'] = $this->Admin_model->search_customer($save);
-			print_r($data['search_customer']); exit();
+			//print_r($data['amc_purchase_offers']); exit();
 			
 			$this->view('amc_purchase_offers', $data);
 		}

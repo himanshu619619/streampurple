@@ -107,7 +107,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Pin Code*</label>
-                                                        <input type="text" name="pin_code"class="form-control" placeholder="Enter Pin Code" value="<?php set_value('pin_code',$pin_code) ?>"> <span class="help-block">  <?php echo form_error('pin_code'); ?></span> </div>
+                                                        <input type="text" name="pin_code"class="form-control" placeholder="Enter Pin Code" value="<?php echo set_value('pin_code',$pin_code) ?>"> <span class="help-block">  <?php echo form_error('pin_code'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                                 <div class="col-md-6">
@@ -143,13 +143,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Model</label>
-                                                        <input type="text" name="model"class="form-control" placeholder="Enter Model" value="<?php set_value('model',$model) ?>"> <span class="help-block">  <?php echo form_error('model'); ?></span> </div>
+                                                        <input type="text" name="model"class="form-control" placeholder="Enter Model" value="<?php echo set_value('model',$model); ?>"> <span class="help-block">  <?php echo form_error('model'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                                 <div class="col-md-6">
                                                     <div class="form-group ">
                                                         <label class="control-label">Brand</label>
-                                                        <input type="text" name="brand"  class="form-control" placeholder="Enter Brand" value="<?php set_value('brand',$brand) ?>"> <span class="help-block">  <?php echo form_error('brand'); ?></span> </div>
+                                                        <input type="text" name="brand"  class="form-control" placeholder="Enter Brand" value="<?php echo set_value('brand',$brand); ?>"> <span class="help-block">  <?php echo form_error('brand'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                             </div>
@@ -191,7 +191,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group ">
                                                         <label class="control-label">ICR No.</label>
-                                                        <input type="text" name="icr_no"  class="form-control" placeholder="Enter ICR No."  value="<?php set_value('icr_no',$icr_no)  ?>"> <span class="help-block">  <?php echo form_error('icr_no'); ?></span> </div>
+                                                        <input type="text" name="icr_no"  class="form-control" placeholder="Enter ICR No."  value="<?php echo set_value('icr_no',$icr_no)  ?>"> <span class="help-block">  <?php echo form_error('icr_no'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                             </div>
@@ -200,13 +200,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">ICR Date</label>
-                                                        <input type="date" name="icr_date"class="form-control" placeholder="Enter ICR Date" value="<?php set_value('icr_date',$icr_date)  ?>"> <span class="help-block">  <?php echo form_error('icr_date'); ?></span> </div>
+                                                        <input type="date" name="icr_date"class="form-control" placeholder="Enter ICR Date" value="<?php echo set_value('icr_date',$icr_date)  ?>"> <span class="help-block">  <?php echo form_error('icr_date'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                                 <div class="col-md-6">
                                                     <div class="form-group ">
                                                         <label class="control-label">Free of Cost Material Given</label>
-                                                        <input type="text" name="free_cost"  class="form-control" placeholder="Yes" value="<?php set_value('free_cost',$free_cost)  ?>"> <span class="help-block">  <?php echo form_error('free_cost'); ?></span> </div>
+                                                        <input type="text" name="free_cost"  class="form-control" placeholder="Yes" value="<?php echo set_value('free_cost',$free_cost)  ?>"> <span class="help-block">  <?php echo form_error('free_cost'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                             </div>
@@ -221,7 +221,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group ">
                                                         <label class="control-label">AMC Start Date</label>
-                                                        <input type="date" name="amc_Date"  class="form-control" placeholder="Enter Start Date" value="<?php set_value('amc_Date',$amc_Date)  ?>"> <span class="help-block">  <?php echo form_error('amc_Date'); ?></span> </div>
+                                                        <input type="date" name="amc_Date"  class="form-control" placeholder="Enter Start Date" value="<?php echo set_value('amc_Date',$amc_Date)  ?>"> <span class="help-block">  <?php echo form_error('amc_Date'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                             </div>
@@ -230,7 +230,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">AMC End Date</label>
-                                                        <input type="date" name="amc_end_date"class="form-control" placeholder="Enter AMC End Date" value="<?php set_value('amc_end_date',$amc_end_date)  ?>"> <span class="help-block">  <?php echo form_error('amc_end_date'); ?></span> </div>
+                                                        <input type="date" name="amc_end_date"class="form-control" placeholder="Enter AMC End Date" value="<?php echo set_value('amc_end_date',$amc_end_date)  ?>"> <span class="help-block">  <?php echo form_error('amc_end_date'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                                 <div class="col-md-6">
@@ -253,13 +253,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">CHQ No</label>
-                                                        <input type="text" name="chq_no"class="form-control" placeholder="Enter CHQ No" value="<?php set_value('chq_no',$chq_no)  ?>"> <span class="help-block">  <?php echo form_error('chq_no'); ?></span> </div>
+                                                        <input type="text" name="chq_no"class="form-control" placeholder="Enter CHQ No" value="<?php echo set_value('chq_no',$chq_no)  ?>"> <span class="help-block">  <?php echo form_error('chq_no'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                                 <div class="col-md-6">
                                                     <div class="form-group ">
                                                         <label class="control-label">CHQ Picture</label>
-                                                        <input type="file" name="chq_picture"  class="form-control" placeholder="Enter CHQ Picture" value="<?php set_value('chq_picture',$chq_picture)  ?>"> <span class="help-block">  <?php echo form_error('chq_picture'); ?></span> </div>
+                                                        <input type="file" name="chq_picture"  class="form-control" placeholder="Enter CHQ Picture" value="<?php echo set_value('chq_picture',$chq_picture)  ?>"> <span class="help-block">  <?php echo form_error('chq_picture'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                             </div>
@@ -268,13 +268,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">CHQ Amount</label>
-                                                        <input type="text" name="chq_amount"class="form-control" placeholder="Enter CHQ Amount" value="<?php set_value('chq_amount',$chq_amount)  ?>"> <span class="help-block">  <?php echo form_error('chq_amount'); ?></span> </div>
+                                                        <input type="text" name="chq_amount"class="form-control" placeholder="Enter CHQ Amount" value="<?php echo set_value('chq_amount',$chq_amount)  ?>"> <span class="help-block">  <?php echo form_error('chq_amount'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                                 <div class="col-md-6">
                                                     <div class="form-group ">
                                                         <label class="control-label">Technecian Name*</label>
-                                                        <input type="text" name="technecian_name"  class="form-control" value="<?php set_value('technecian_name',$technecian_name)  ?>" placeholder="Enter Technecian Name" > <span class="help-block">  <?php echo form_error('technecian_name'); ?></span> </div>
+                                                        <input type="text" name="technecian_name"  class="form-control" value="<?php echo set_value('technecian_name',$technecian_name)  ?>" placeholder="Enter Technecian Name" > <span class="help-block">  <?php echo form_error('technecian_name'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                             </div>
