@@ -61,7 +61,7 @@
                    
                         <div class="white-box">
                            
-                            <div class="user-bg text-center" style="display: flex; justify-content:center; align-items:center; "> <img width="100%" height="100% alt="user" src="<?php echo base_url('uploads/customer_photo')?>/<?php echo $view_amc_purchase_offers->picture_machine; ?>"  > </div><br>
+                            <div class="user-bg text-center" style="display: flex; justify-content:center; align-items:center; "> <img width="100%" height=" alt="user" src="<?php echo base_url('uploads/customer_photo')?>/<?php echo $view_amc_purchase_offers->picture_machine ? $view_amc_purchase_offers->picture_machine : '/service.png'; ?>"  > </div><br>
                             <center><h4 class="center"><strong>Machine Image</strong></h4> </center> 
                             <div class="user-btm-box">
                                 <!-- .row -->
@@ -91,11 +91,11 @@
                                     
                                
                                     <div class="col-md-12">
-                                        <p style="display: flex; justify-content:center; align-items:center; "><img src="<?php echo base_url('uploads/customer_photo/'); echo $view_amc_purchase_offers->icr_picture; ?>" class="zoom"style="width:100px; height:100px;"></p>
+                                        <p style="display: flex; justify-content:center; align-items:center; "><img src="<?php echo base_url('uploads/customer_photo/'); echo $view_amc_purchase_offers->icr_picture ?$view_amc_purchase_offers->icr_picture :'/service.png'; ?>" class="zoom"style="width:100px; height:100px;"></p>
                                         <strong>ICR Picture</strong>
                                     </div>
                                     <div class="col-md-12">
-                                        <p style="display: flex; justify-content:center; align-items:center; "><img src="<?php echo base_url('uploads/customer_photo/');echo $view_amc_purchase_offers->chq_picture; ?>" class="zoom" style="width:100px;height:100px;"></p>
+                                        <p style="display: flex; justify-content:center; align-items:center; "><img src="<?php echo base_url('uploads/customer_photo/');echo $view_amc_purchase_offers->chq_picture ? $view_amc_purchase_offers->chq_picture : '/service.png'; ?>" class="zoom" style="width:100px;height:100px;"></p>
                                         <strong>Chaque Picture</strong>
                                     </div>
                                     
@@ -125,10 +125,12 @@
                             </div>
                             
                             <div class="row">
-                            <div class="col-md-12 col-xs-6 b-b"><hr>
+                            <div class="col-md-8 col-xs-6 b-b"><hr>
                                     <strong>Customer Address</strong> <br><?php echo $view_amc_purchase_offers->customer_address; ?><br><br>
                             </div>
-                          
+                            <div class="col-md-4 col-xs-6 b-b b-l"><hr>
+                                    <strong>Customer Code</strong> <br><?php echo $view_amc_purchase_offers->customer_code; ?><br><br>
+                            </div>
                             <div class="col-md-6 col-xs-6 b-r"><br> <strong> City</strong><br><?php echo $view_amc_purchase_offers->customer_city; ?></div> 
                             <div class="col-md-6 col-xs-6 b-r"> <br><strong> Pin Code</strong><br><?php echo $view_amc_purchase_offers->pin_code; ?></div>
                             
@@ -222,30 +224,38 @@
 
                             </div>
                            <hr>
-                           
+                            
                            <div class="row">
+                               <?php  if($view_amc_purchase_offers->dealer_invoice_pic){ ?>
                             <div class="col-md-4 col-xs-6 b-r" > 
                             <strong>Dealer Invoice Pic</strong>  <br>            
-                            <p style="display:flex; justify-content:center; align-items:center; "><img src="<?php echo base_url('uploads/customer_photo/');echo $view_amc_purchase_offers->dealer_invoice_pic; ?>"class="zoom" style="width:100px; height:100px;"></p>
+                            <p style="display:flex; justify-content:center; align-items:center; "><img src="<?php echo base_url('uploads/customer_photo/');echo $view_amc_purchase_offers->dealer_invoice_pic ? $view_amc_purchase_offers->dealer_invoice_pic :'/service.png'; ?>"class="zoom" style="width:100px; height:100px;"></p>
                              </div>
+                              <?php  } ?>
+                          <?php  if($view_amc_purchase_offers->dealer_date){ ?>
                              <div class="col-md-4 col-xs-6 ">  
                              <strong>Dealer Date </strong> <br>        
                              <p><?php echo $view_amc_purchase_offers->dealer_date; ?></p>
                              </div>
+                               <?php  } ?>
 
+                            <?php  if($view_amc_purchase_offers->compay_warranty_start){ ?>
                              <div class="col-md-4 col-xs-6 ">  
                              <strong>Company Warranty Start Date </strong> <br>        
                              <p><?php echo $view_amc_purchase_offers->compay_warranty_start; ?></p>
                              </div>
-
+                            <?php  } ?>
+                            <hr>
                             </div>
-                           <hr>
+                           
                            
                            <div class="row">
+                                 <?php  if($view_amc_purchase_offers->compay_warranty_end){ ?>
                            <div class="col-md-4 col-xs-6 ">  
                              <strong>Comany Warranty End </strong> <br>        
                              <p><?php echo $view_amc_purchase_offers->compay_warranty_end; ?></p>
                              </div>
+                               <?php  } ?>
                             <div class="col-md-4 col-xs-6 b-r"> 
                             <strong>Chq Number</strong>  <br>            
                             <p><?php echo $view_amc_purchase_offers->chq_no; ?></p>

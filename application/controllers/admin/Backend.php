@@ -519,7 +519,53 @@ class Backend extends Admin_Controller
 		{
 			$data= $this->data;
 			$data['page_title'] = 'AMC Purchase Offers';
+			$data['service_type'] = 1;
  		$data['amc_purchase_offers'] = $this->Admin_model->get_amc_purchase_offers();
+			$this->view('amc_purchase_offers', $data);
+		}
+
+		function extend_warranty_purchase()
+		{
+			$data= $this->data;
+			$data['page_title'] = 'AMC Purchase Offers';
+			$data['service_type'] = 2;
+ 		$data['amc_purchase_offers'] = $this->Admin_model->extend_warranty_purchase();
+			$this->view('amc_purchase_offers', $data);
+		}
+
+
+		function already_under_amc()
+		{
+			$data= $this->data;
+			$data['page_title'] = 'AMC Purchase Offers';
+			$data['service_type'] = 3;
+ 		$data['amc_purchase_offers'] = $this->Admin_model->already_under_amc($data['service_type']);
+			$this->view('amc_purchase_offers', $data);
+		}
+
+		function not_in_a_amc()
+		{
+			$data= $this->data;
+			$data['page_title'] = 'AMC Purchase Offers';
+			$data['service_type'] = 4;
+ 		$data['amc_purchase_offers'] = $this->Admin_model->already_under_amc($data['service_type']);
+			$this->view('amc_purchase_offers', $data);
+		}
+
+		function washing_machine_demo()
+		{
+			$data= $this->data;
+			$data['page_title'] = 'AMC Purchase Offers';
+			$data['service_type'] = 5;
+ 		$data['amc_purchase_offers'] = $this->Admin_model->already_under_amc($data['service_type']);
+			$this->view('amc_purchase_offers', $data);
+		}
+		function ac_installation()
+		{
+			$data= $this->data;
+			$data['page_title'] = 'AMC Purchase Offers';
+			$data['service_type'] = 6;
+ 		$data['amc_purchase_offers'] = $this->Admin_model->already_under_amc($data['service_type']);
 			$this->view('amc_purchase_offers', $data);
 		}
 
@@ -528,10 +574,13 @@ class Backend extends Admin_Controller
 			$data= $this->data;
 		$data['page_title'] = 'Detail Information of AMC';
 		$data['form_action'] = 'Backend/view_amc_purchase_offers';
+		
  		$data['view_amc_purchase_offers'] = $this->Admin_model->view_amc_purchase_offers($service_id);
  		 //print_r($data['view_amc_purchase_offers'] ); exit();
 			$this->view('view_amc_purchase_offers', $data);
 		}
+
+	
 
 
 		function edit_amc_purchase_offers($service_id)
@@ -606,7 +655,7 @@ class Backend extends Admin_Controller
              $save['chq_picture']= $this->input->post('chq_picture');
             $save['chq_amount']= $this->input->post('chq_amount');
             $save['technecian_name']= $this->input->post('technecian_name');
-            $save['service_type'] = 1;
+            // $save['service_type'] = 1;
 
 			 //print_r($save); exit();
             $this->Admin_model->edit_amc_purchase_offers($service_id, $save);
@@ -616,11 +665,17 @@ class Backend extends Admin_Controller
 		
 	}
 
+
+
+
 			function delete_amc_purchase_offers($service_id)
 		{
 			$data= $this->data;
  		$data['amc_purchase_offers'] = $this->Admin_model->delete_amc_purchase_offers($service_id);
-			$this->view('amc_purchase_offers', $data);
+			
+					redirect($_SERVER['HTTP_REFERER']);
+
+			// redirect('admin/Backend/amc_purchase_offers/');
 		}
 
 		function search_customer()
@@ -628,7 +683,7 @@ class Backend extends Admin_Controller
 			$data= $this->data;	
 			$data['page_title'] = 'Search Service Record';
 			$save['customer_name'] = $this->input->post('customer_name');
-			$save['service_type'] = 1;					
+			$save['service_type'] = $this->input->post('service_type');	
 			$data['amc_purchase_offers'] = $this->Admin_model->search_customer($save);
 			//print_r($data['amc_purchase_offers']); exit();
 			

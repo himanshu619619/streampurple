@@ -198,6 +198,22 @@ if($result)
                                                 </div>
                                                 <!--/span-->
                                             </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Customer E-mail *</label>
+                                                        <input type="text" name="customer_email"class="form-control" placeholder="certified"> <span class="help-block">  <?php echo form_error('customer_email'); ?></span> </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group ">
+                                                        <label class="control-label">ICR Amount</label>
+                                                        <input type="text" name="icr_amount"  class="form-control" placeholder="Enter Machine Status"> <span class="help-block">  <?php echo form_error('icr_amount'); ?></span> </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -213,10 +229,18 @@ if($result)
                                                 <!--/span-->
                                             </div>
                                               <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Technecian Mobile No.</label>
-                                                        <input type="text" name="technecian"class="form-control" placeholder="Enter technecian Mobile No."> <span class="help-block">  <?php echo form_error('technecian'); ?></span> </div>
+                                              <div class="col-md-6">
+                                                    <div class="form-group ">
+                                                        <label class="control-label">Payment Mode </label>
+                                                        <select class="form-control" name='payment_mode'>
+                                                            <option value="cash">cash in Hand</option>
+                                                            <option value="bycard">By Card</option>
+                                                              <option value="netbanking">Net Banking</option>
+                                                        </select> 
+
+<span class="help-block">  <?php echo form_error('payment_mode'); ?></span> 
+
+                                                    </div>
                                                 </div>
                                                 <!--/span-->
                                                 <div class="col-md-6">
@@ -264,18 +288,12 @@ if($result)
                                                         <input type="date" name="amc_end_date"class="form-control" placeholder="Enter AMC End Date"> <span class="help-block">  <?php echo form_error('amc_end_date'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
+                                                
+
                                                 <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label class="control-label">Payment Mode </label>
-                                                        <select class="form-control" name='payment_mode'>
-                                                            <option value="cash">cash in Hand</option>
-                                                            <option value="bycard">By Card</option>
-                                                              <option value="netbanking">Net Banking</option>
-                                                        </select> 
-
-<span class="help-block">  <?php echo form_error('payment_mode'); ?></span> 
-
-                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">CHQ Amount</label>
+                                                        <input type="text" name="chq_amount"class="form-control" placeholder="Enter CHQ Amount"> <span class="help-block">  <?php echo form_error('chq_amount'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                             </div>
@@ -296,10 +314,12 @@ if($result)
                                             </div>
 
                                             <div class="row">
+                                               
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="control-label">CHQ Amount</label>
-                                                        <input type="text" name="chq_amount"class="form-control" placeholder="Enter CHQ Amount"> <span class="help-block">  <?php echo form_error('chq_amount'); ?></span> </div>
+                                                        <label class="control-label">Technecian Mobile No.</label>
+                                                        <input type="text" name="technecian"class="form-control" placeholder="Enter technecian Mobile No."> <span class="help-block">  <?php echo form_error('technecian'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                                 <div class="col-md-6">

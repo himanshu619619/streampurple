@@ -141,6 +141,8 @@ if($this->form_validation->run() == FALSE)
      $save['customer_mobile']= $this->input->post('customer_mobile');
      $save['product_category']= $this->input->post('product_category');
      $save['machine_serial']= $this->input->post('machine_serial');
+     $save['customer_email']= $this->input->post('customer_email');
+     $save['icr_amount']= $this->input->post('icr_amount');
      $save['model']= $this->input->post('model');
      $save['brand']= $this->input->post('brand');
      $save['date_of_purchase']= $this->input->post('date_of_purchase');

@@ -36,10 +36,10 @@
                                   <div class="input-group">
                                      
                                       <input type="text" class="form-control" placeholder="Customer Name" name="customer_name">
+                                      <input type="hidden" class="form-control" placeholder="Customer Name" name="service_type" value="<?php echo @$service_type;?>">
                                   </div>
                               </div>
  
-                            
                              
                               <div class="col-lg-2">
                                   <div class="input-group">

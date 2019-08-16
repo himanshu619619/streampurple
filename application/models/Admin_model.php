@@ -65,7 +65,20 @@ class Admin_model extends CI_model
 		return $this->db->select('*')->where('service_type',$save['service_type'])->like('customer_name',$save['customer_name'])->get('service_record')->result();
 
 	}
+	function extend_warranty_purchase()
+	{
 
+		$service_type = 2;
+		return $this->db->select('*')->where('service_type',$service_type)->get('service_record')->result();
+
+	}
+	function already_under_amc($save)
+	{
+		
+		return $this->db->select('*')->where('service_type',$save)->get('service_record')->result();
+
+	}
+	
 
 }
  
