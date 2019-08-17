@@ -203,13 +203,13 @@ if($result)
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Customer E-mail *</label>
-                                                        <input type="text" name="customer_email"class="form-control" placeholder="certified"> <span class="help-block">  <?php echo form_error('customer_email'); ?></span> </div>
+                                                        <input type="text" name="customer_email"class="form-control" placeholder="customer email"> <span class="help-block">  <?php echo form_error('customer_email'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                                 <div class="col-md-6">
                                                     <div class="form-group ">
                                                         <label class="control-label">ICR Amount</label>
-                                                        <input type="text" name="icr_amount"  class="form-control" placeholder="Enter Machine Status"> <span class="help-block">  <?php echo form_error('icr_amount'); ?></span> </div>
+                                                        <input type="text" name="icr_amount"  class="form-control" placeholder="ICR Amount"> <span class="help-block">  <?php echo form_error('icr_amount'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                             </div>
@@ -261,7 +261,7 @@ if($result)
                                                 <div class="col-md-6">
                                                     <div class="form-group ">
                                                         <label class="control-label">Free of Cost Material Given</label>
-                                                        <input type="text" name="free_cost"  class="form-control" placeholder="Yes"> <span class="help-block">  <?php echo form_error('free_cost'); ?></span> </div>
+                                                        <input type="text" name="free_cost"  class="form-control" placeholder="Free of Cost Material Given"> <span class="help-block">  <?php echo form_error('free_cost'); ?></span> </div>
                                                 </div>
                                                 <!--/span-->
                                             </div>

@@ -162,6 +162,7 @@ if($this->form_validation->run() == FALSE)
      $save['chq_amount']= $this->input->post('chq_amount');
      $save['technecian_name']= $this->input->post('technecian_name');
       $save['service_type'] = 1;
+      $save['profile_id'] =$profile_id;
 
      
       $result = $this->Serviceagent_model->serviceagentdata_save($save);
@@ -542,7 +543,7 @@ if($this->form_validation->run() == FALSE)
      $save['chq_amount']= $this->input->post('chq_amount');
      $save['technecian_name']= $this->input->post('technecian_name');
       $save['service_type'] = 2;
-
+      $save['profile_id'] =$profile_id;
      
       $result = $this->Serviceagent_model->serviceagentdata_save($save);
 
@@ -667,7 +668,7 @@ if($this->form_validation->run() == FALSE)
      $save['chq_amount']= $this->input->post('chq_amount');
      $save['technecian_name']= $this->input->post('technecian_name');
       $save['service_type'] = 3;
-
+      $save['profile_id'] =$profile_id;
      
       $result = $this->Serviceagent_model->serviceagentdata_save($save);
 
@@ -793,7 +794,7 @@ if($this->form_validation->run() == FALSE)
      $save['chq_amount']= $this->input->post('chq_amount');
      $save['technecian_name']= $this->input->post('technecian_name');
       $save['service_type'] = 4;
-
+      $save['profile_id'] =$profile_id;
      
       $result = $this->Serviceagent_model->serviceagentdata_save($save);
 
@@ -919,7 +920,7 @@ if($this->form_validation->run() == FALSE)
      $save['chq_amount']= $this->input->post('chq_amount');
      $save['technecian_name']= $this->input->post('technecian_name');
       $save['service_type'] = 5;
-
+      $save['profile_id'] =$profile_id;
      
       $result = $this->Serviceagent_model->serviceagentdata_save($save);
 
@@ -1044,7 +1045,7 @@ if($this->form_validation->run() == FALSE)
      $save['chq_amount']= $this->input->post('chq_amount');
      $save['technecian_name']= $this->input->post('technecian_name');
       $save['service_type'] = 6;
-
+      $save['profile_id'] =$profile_id;
      
       $result = $this->Serviceagent_model->serviceagentdata_save($save);
 
