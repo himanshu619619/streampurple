@@ -1,6 +1,7 @@
 
 input[type="text"], 
 input[type="password"], 
+input[type="email"], 
 textarea, 
 textarea.form-control {
 	height: 50px;
@@ -51,7 +52,7 @@ button.btn {
     margin: 0;
     padding: 0 20px;
     vertical-align: middle;
-    background: #f7a5c9;
+    background: #772A78;
     border: 0;
     font-size: 16px;
     font-weight: 300;

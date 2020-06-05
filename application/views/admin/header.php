@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16"
         href="<?php echo base_url('assets/user'); ?>/plugins/images/favicon.png">
-    <title> Accuprint</title>
+    <title> StreamPurple</title>
 
     <!-- Bootstrap Core CSS -->
 
@@ -71,7 +71,7 @@
                         class="ti-menu"></i></a>
                 <div class="top-left-part"><a class="logo" href="<?php echo base_url(''); ?>"><b><img height="30"
                                 src="<?php echo base_url('assets/backend'); ?>/plugins/images/admin.png"
-                                alt="home" /></b><span class="hidden-xs"><strong>Amass</strong></span></a></div>
+                                alt="home" /></b><span class="hidden-xs"><strong>Stream</strong></span></a></div>
                 <ul class="nav navbar-top-links navbar-left hidden-xs">
                     <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i
                                 class="icon-arrow-left-circle ti-menu"></i></a></li>
@@ -97,7 +97,7 @@
                             <!--   <li><a href="javascript:void(0)"><i class="ti-user"></i>  My Profile</a></li>
                             <li><a href="javascript:void(0)"><i class="ti-email"></i>  Inbox</a></li>
                             <li><a href="javascript:void(0)"><i class="ti-settings"></i>  Account Setting</a></li> -->
-                            <li><a href="<?php echo base_url('admin/Admin_patient/logout') ?>"><i
+                            <li><a href="<?php echo base_url('admin/Backend/logout') ?>"><i
                                         class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                         <!-- /.dropdown-user -->
@@ -132,45 +132,14 @@
 
 
 
-                     <li> <a href="javascript:void(0);" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span
-                                class="hide-menu"> Services <span class="fa arrow"></span></span></a>
-                      
-                      <li> <a href="<?php echo base_url('admin/Backend/amc_purchase_offers'); ?>">&nbsp;AMC Purchase Offers</a> </li>
-                      <li> <a href="<?php echo base_url('admin/Backend/extend_warranty_purchase'); ?>">&nbsp;Extend Warranty &nbsp;Purchase</a>
-                      </li>
-                          
-                        <li> <a href="javascript:(0);">&nbsp;Book A Repair Service <span class="fa arrow"></span></a>
-
-                                  <ul class="nav nav-second-level">
-                                    <li> <a href="<?php echo base_url('admin/Backend/already_under_amc'); ?>">&nbsp;Already Under AMC</a>
-                                    </li>
-                                    <li> <a href="<?php echo base_url('admin/Backend/not_in_a_amc'); ?>">&nbsp;Not in a AMC</a>
-                                    </li>
-
-                                  </ul>
-
-                      </li>
-
-                             <li> <a href="javascript:(0);">&nbsp;Book A Demo <span class="fa arrow"></span></a>
-
-                                     <ul class="nav nav-second-level">
-                                        <li> <a href="<?php echo base_url('admin/Backend/washing_machine_demo'); ?>">&nbsp;Washing Machine Demo</a>
-                                        </li>
-                                         <li> <a href="<?php echo base_url('admin/Backend/ac_installation'); ?>">&nbsp;AC Installation</a>
-                                        </li>
-
-                                   </ul>
-
-
-
-                            </li>
-                       
-                    </li>
-
+                     <li> <a href="<?php echo base_url('admin/Backend/user_details'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span
+                                class="hide-menu"> users <span class="fa arrow"></span></span></a>
+ </li>
+  <li> <a href="<?php echo base_url('admin/Backend/voting'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span
+                                class="hide-menu"> Voting <span class="fa arrow"></span></span></a>
+ </li>
                    
-                <!--     <li> <a href="<?php echo base_url('admin/backend/add_home_text'); ?>" class="waves-effect"><i
-                                class="ti-dashboard p-r-10"></i> <span class="hide-menu">Add Home Text</span></a> </li> -->
-
+             
 
 
 

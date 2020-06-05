@@ -23,31 +23,30 @@ class Config
     // ------------------------------------------------------------------------
     // General Settings
     // ------------------------------------------------------------------------
-    const BASE_URL        = 'http://localhost/amass/';
+    const BASE_URL        = 'http://localhost/stream/';
     const LANGUAGE        = 'english';
-    const DEBUG_MODE      = FALSE;
-    const ENABLE_HOOKS    = FALSE;
+    const DEBUG_MODE      = false;
+    const ENABLE_HOOKS    = false;
     const COKKIES_DOMAIN  = 'localhost';
-    const COKKIES_PATH    = '/amass/';
-    const COKKIES_PREFIX  = 'amass';
-    const COKKIES_NAME    = 'amass';
+    const COKKIES_PATH    = '/stream/';
+    const COKKIES_PREFIX  = 'stream';
+    const COKKIES_NAME    = 'stream';
 
 
     // ------------------------------------------------------------------------
     // Database Settings
     // ------------------------------------------------------------------------
     const DB_HOST       = 'localhost';
-    const DB_NAME       = 'amass';
+    const DB_NAME       = 'stream';
     const DB_USERNAME   = 'root';
     const DB_PASSWORD   = '';
     const DB_DRIVER     = 'mysqli';
-    const DB_PREFIX     = 'wr_';
     const DB_DNS        = ''; // require if DB_DRIVER is pdo like (mysql:host=localhost;dbname=ci_goconsult) otherwise it can be blank.
 
     // ------------------------------------------------------------------------
     // Google Calendar Sync
     // ------------------------------------------------------------------------
-    const GOOGLE_SYNC_FEATURE   = FALSE; // Enter TRUE or FALSE
+    const GOOGLE_SYNC_FEATURE   = false; // Enter TRUE or FALSE
     const GOOGLE_PRODUCT_NAME   = '';
     const GOOGLE_CLIENT_ID      = '';
     const GOOGLE_CLIENT_SECRET  = '';

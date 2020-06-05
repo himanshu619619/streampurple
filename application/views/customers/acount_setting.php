@@ -36,12 +36,12 @@
                 <!-- <h3 class="box-title m-b-0">Default Basic Forms</h3>
                 <p class="text-muted m-b-30 font-13"> All bootstrap element classies </p> -->
 
-                 <?php echo form_open('Doctor/account_setting');?>
+                 <?php echo form_open('Customers/account_setting');?>
                     <div align="center">
                         <div class="form-group row">
                     <?php if ($user->photo) {?>
                      
-                      <a href="" data-toggle="modal" data-target="#myModal"> <img src="<?php echo $user->photo; ?>" style="height: 100px; width: 100px;"></a> 
+                      <a href="" data-toggle="modal" data-target="#myModal"> <img src="<?php echo base_url('uploads/user_photo')?>/<?php echo $user->photo; ?>" style="height: 100px; width: 100px;"></a> 
                       <?php } else { ?>
                          <a href="" data-toggle="modal" data-target="#myModal"> <img src="<?php echo base_url('assets/user');?>/plugins/images/users/d1.jpg"></a> 
                       <?php } ?>
@@ -77,13 +77,24 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="example-tel-input" class="col-2 col-form-label">Qualification</label>
+                     <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">Mobile</label>
                         <div class="col-10">
-                            <input class="form-control" value="<?php echo set_value('qualification',$user->qualification);?>" type="text"  name="qualification"  id="example-tel-input" >
-                            <?php echo form_error('qualification');?>
+                            <input class="form-control" type="text" name="mobile" value="<?php echo set_value('mobile',$user->mobile);?>" id="example-email-input">
+                            <?php echo form_error('mobile');?>
                         </div>
                     </div>
+
+ <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">DOB</label>
+                        <div class="col-10">
+                            <input class="form-control" type="date" name="dob" value="<?php echo set_value('dob',$user->dob);?>" id="example-email-input">
+                            <?php echo form_error('dob');?>
+                        </div>
+                    </div>
+
+
+                  
 
                     <div class="form-group row">
                         <label for="example-password-input" class="col-2 col-form-label">Full Address</label>
@@ -92,31 +103,7 @@
                             <?php echo form_error('address');?>
                         </div>
                     </div>
-                    <div class="form-group row">
-                    <label for="example-password-input" class="col-2 col-form-label">Select Department</label>
-                    <div class="col-10">
-                              <?php echo form_dropdown('dr_type_id',$user_option,set_value('dr_type_id'),'class="form-control" onchange="get_doctor_qualification(this.value)"'); ?>
-                    </div> </div>
-
-<div class="form-group row">
-                         <label for="example-text-input" class="col-2 col-form-label"> select Qualication</label>
-                          <div class="col-10">
-                              <select class="form-control " name="degree" id="quali">
-                                
-                              </select>
-                          </div>
-                        </div>
-
- <div class="form-group row">
-                         <label for="example-text-input" class="col-2 col-form-label"> Specialist</label>
-                          <div class="col-10">
-                              <select class="form-control " onchange="get_doctor_specialist(this.value)" name="subfield" id="sub">
-                                
-                              </select>
-                          </div>
-                        </div>
-
-
+                 
                     
                     <div class="form-group row">
                         <label for="example-password-input" class="col-2 col-form-label">Country</label>
@@ -128,10 +115,8 @@
                     <div class="form-group row">
                         <label for="example-password-input" class="col-2 col-form-label">State</label>
                         <div class="col-10">
-                           <select class="form-control" name="state" onchange="get_city(this.value)"  id="state_form">
-                            <option value="">--Select State--</option>
-                            <!-- <option value="">India</option>
-                            <option value="">caneda</option> -->
+                       
+                          <?php echo  form_dropdown('state',$state_option,set_value('state',$user->state),'class = "form-control" onchange="get_city(this.value)"');?>
                         </select>
                             <?php echo form_error('address');?>
                         </div>
@@ -139,10 +124,11 @@
                     <div class="form-group row">
                         <label for="example-password-input" class="col-2 col-form-label" >City</label>
                         <div class="col-10" >
-                           <select class="form-control" name="cities" id="city_form">
-                            <option value="">--Select City--</option>
-                            <option value="">India</option>
-                            <option value="">caneda</option>
+                          
+
+                    <?php echo form_dropdown('cities',$city_option, set_value('cities',$user->cities), 'class="form-control" id="city_form" ' ); ?>
+
+                          
                         </select>
                             <?php echo form_error('address');?>
                         </div>
@@ -155,25 +141,7 @@
                         </div>
                     </div>
                     
-                    <div class="form-group row">
-                        <label for="example-password-input" class="col-2 col-form-label">Landmark</label>
-                        <div class="col-10">
-                            <input class="form-control"   name="landmark" value="<?php echo set_value('landmark',$user->landmark);?>" type="text"  id="example-password-input">
-                            <?php echo form_error('address');?>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="example-password-input" class="col-2 col-form-label">longitude & latitude</label>
-                        <div class="col-5">
-                            <input class="form-control"   name="longitude" value="<?php echo set_value('longitude',$user->longitude);?>" type="text"  id="example-password-input">
-                            <?php echo form_error('address');?>
-                        </div>
-                        <div class="col-5">
-                            <input class="form-control" value="<?php echo set_value('latitude',$user->latitude);?>"   name="latitude" type="text"  id="example-password-input">
-                            <?php echo form_error('address');?>
-                        </div>
-                    </div>
-
+               
                     
                     
                    <div class="form-group row">
@@ -244,7 +212,7 @@
           <h4 class="modal-title">Upload Profile</h4>
         </div>
         <div class="modal-body">
-        <?php echo form_open_multipart('Doctor/photo_upload');?>
+        <?php echo form_open_multipart('Customers/photo_upload');?>
          
            <div class="form-group row">
            <input type="file" name="photo" id="doc_frofile">
@@ -274,7 +242,7 @@
 
     $.ajax({
         type: "POST",
-        url: "<?php echo site_url('Doctor/change_password'); ?>",
+        url: "<?php echo site_url('Customers/change_password'); ?>",
         data: form.serialize(), // <--- THIS IS THE CHANGE
         dataType: "html",
         success: function(data){
@@ -303,7 +271,7 @@
      $.ajax({
 
              type  : 'post',
-             url  : "<?php echo  base_url('Doctor/get_states');?>",
+             url  : "<?php echo  base_url('Customers/get_states');?>",
              data : {country_id:country_id},
              success : function(data){
                 // alert(data);
@@ -319,7 +287,7 @@
       $.ajax({
 
              type  : 'post',
-             url  : "<?php echo  base_url('Doctor/get_cities');?>",
+             url  : "<?php echo  base_url('Customers/get_cities');?>",
              data : {state_id:state_id},
              success : function(data){
                 // alert(data);
@@ -331,37 +299,4 @@
 
 </script>
 
-<script type="text/javascript">
-    
-    function get_doctor_qualification(id){
-    
-     $.ajax({
-             type  : "POST",
-             url  : "<?php echo  base_url('Patient/get_doctor_qualification'); ?>",
-             data : {id:id},
-             dataType: "html",
-         
-             success : function(data){
-                 
-              $('#quali').html(data);  
-             }
-         });
 
-    }
-       </script>
-
-       <script type="text/javascript" >
-function get_doctor_specialist(quali_id){
-     // alert(quali_id);
-     $.ajax({
-             type  : "POST",
-             url  : "<?php echo  base_url('Patient/get_doctor_specialist'); ?>",
-             data : {quali_id:quali_id},
-             dataType: "html",
-             success : function(data){
-         alert(data);
-              $('#sub').html(data);  
-             }
-         });
-
-    }   </script>

@@ -13,14 +13,14 @@ class Ref_id {
 
   function get_profile_id()
   {
-    $email = $this->CI->session->userdata['pharmacydetail']['email'];
+    $email = $this->CI->session->userdata['customerdetail']['email'];
     $rr = $this->CI->db->select('*')->where('email',$email)->get('users')->row();
     return $rr->profile_id; 
   }
 
     function get_user_type()
   {
-    $email = $this->CI->session->userdata['pharmacydetail']['email'];
+    $email = $this->CI->session->userdata['customerdetail']['email'];
     $rr = $this->CI->db->select('*')->where('email',$email)->get('users')->row();
     return $rr->user_type;
   }

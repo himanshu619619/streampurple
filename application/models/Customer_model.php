@@ -14,11 +14,85 @@ class Customer_model extends CI_Model
     }
   }
 
+  public function get_customer_detail($profile_id){
+       
+    
+    return $this->db->select('*')
+                    ->where('profile_id',$profile_id)                   
+                    ->get('users')->row();
+
+  }
+
+
+
+  public function check_username($username,$profile_id){
+
+    $where ="profile_id !='".$profile_id."' AND username = '".$username."' ";
+ 
+   return  $this->db->where($where)->get('users')->num_rows();
+
+  }
+
+  public function check_email($email,$profile_id){
+
+    $where =" profile_id !='".$profile_id."' AND email = '".$email."' ";
+
+    return $this->db->where($where)->get('users')->num_rows();
+  }
+
   function  add_patient($data)
   {
     return $this->db->insert('wp_patient', $data);
   }
 
+  function save_message($save)
+  {
+    $this->db->insert('message', $save);
+  }
+
+  function get_country()
+  {
+     return $this->db->select("*")->get('countries')->result();
+  }
+
+  function get_state()
+  {
+     return $this->db->select("*")->get('states')->result();
+  }
+
+   function get_city()
+  {
+     return $this->db->select("*")->get('cities')->result();
+  }
+  function get_banners()
+  {
+    return $this->db->select("*")->where('banner_id', 1)->get('banners')->row();
+  }
+
+    function get_banners_home()
+  {
+    return $this->db->select("*")->where('banner_id', 2)->get('banners')->row();
+  }
+
+
+public function update_doc_password($save){
+
+  if($save['profile_id']){
+    //print_r($data['profile_id']);exit();
+   return $this->db
+                ->set('password',$save['new_password'])
+                  ->where('profile_id',$save['profile_id'])
+                ->update('users');
+            }
+          }
+
+ public function save_user_photo($data=array() ){
+ 
+   return  $this->db->set('photo',$data['photo'])
+                    ->where('profile_id',$data['profile_id'])
+                    ->update('users');
+
+  } 
 
   function save_user($data)
   {
@@ -60,17 +134,16 @@ class Customer_model extends CI_Model
 
   function login($username, $password, $remember = false)
   {
-
     $this->db->select('*');
     $this->db->or_where('email', $username);
+       $this->db->where('password',  $password); // here is change sha1
+       $this->db->where('status', 1);
     // $this->db->or_where('mobile',$username);
      $this->db->or_where('username',$username);
-    $this->db->where('status', 1);
-    $this->db->where('password',  $password); // here is change sha1
     $this->db->limit(1);
     $result   = $this->db->get('users');
     $user = $result->row_array();
-    //print_r($user); exit();
+    //print_r($result); exit();
     if ($user) {
 
       $user_type = $user['user_type'];
@@ -141,29 +214,38 @@ class Customer_model extends CI_Model
     }
   }
 
+public function save_customer_profile($data=array()){
+    //echo $data['profile_id'];exit();
+    if($data['profile_id']){      
+      return $this->db
+                  ->where('profile_id',$data['profile_id'])
+                  ->update('users',$data);
 
-  // public function get_cities_list($state_id=false){
+    }
 
-  //   if($state_id)
-  //   {
+  }  
+  public function get_cities_list($state_id=false){
 
-  //    return $cities= $this->db->select('*')
-  //                           ->where('state_id',$state_id)
-  //                           ->get('cities')
-  //                           ->result();
-  //             //print_r($cities);exit();
+    if($state_id)
+    {
 
-  //   }else{
+     return $cities= $this->db->select('*')
+                            ->where('state_id',$state_id)
+                            ->get('cities')
+                            ->result();
+              //print_r($cities);exit();
 
-  //   return $cities= $this->db->select('*')
+    }else{
 
-  //                           ->get('cities')
-  //                           ->result();
-  //             //print_r($cities);exit();
-  //   }
+    return $cities= $this->db->select('*')
+
+                            ->get('cities')
+                            ->result();
+              //print_r($cities);exit();
+    }
 
 
-  // }
+  }
 
 
   function get_services()

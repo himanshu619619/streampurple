@@ -72,7 +72,7 @@ body {
   box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
 }
 .sidebar .label-custom {
-  background: #01c0c8;
+  background: #772A78;
 }
 #side-menu li a {
   color: #54667a;
@@ -111,7 +111,7 @@ body {
   background-color: #fb9678 !important;
 }
 .bg-theme-dark {
-  background-color: #01c0c8 !important;
+  background-color: #772A78 !important;
 }
 /*Chat widget*/
 .chat-list .odd .chat-text {

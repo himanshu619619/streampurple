@@ -35,6 +35,156 @@ class Backend extends Admin_Controller
 		$data = $this->data;
 		$this->view('dashboard', $data);
 	}
+
+		public function voting(){
+			$data = $this->data;
+			$data['page_title'] 	= 'Voting Name';
+			$data['voting'] =  $this->Admin_model->get_voting_name();
+			$vote_statuss =  $this->Admin_model->hide_vote();
+			$data['vote_status_status'] = $vote_statuss->vote_status;
+			//print_r($data['vote_status_status']); exit();
+			$this->view('voting',$data);
+		}
+
+
+		public function add_voting($vote_id= false){
+				$data = $this->data;
+				$data['page_title'] 	= ' Add Voting Title';
+				$data['vote_name'] = '';
+				
+			
+				if($vote_id){
+
+				$data['form_action'] =site_url($this->admin_folder . '/backend/add_voting/'.$vote_id);
+				 $data['page_title'] ='Edit Voting Name';
+				$voting_details = $this->Admin_model->get_voting_name_single($vote_id);
+				// print_r($voting_details); exit();
+				$data['vote_name'] = $voting_details->vote_name;
+
+				}
+				else{
+							$data['form_action'] =site_url($this->admin_folder . '/backend/add_voting/');
+							$data['page_title'] 	= ' Add Voting Title';
+				}
+   
+			    $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+			    $this->form_validation->set_rules('vote_name','vote_name','trim|required');
+			 
+			    if($this->form_validation->run() == FALSE)
+			    {
+			    $this->view('add_voting',$data);
+
+			    }
+
+			    else{       
+			    $save['vote_name']= $this->input->post('vote_name');
+					
+			    $result = $this->Admin_model->add_voting($save, $vote_id);
+			     $this->session->set_flashdata('success', 'Vote name add Successfully!');
+			    redirect('admin/Backend/add_voting');
+
+			
+		}
+
+}
+
+
+function vote_delete($vote_id){
+     $this->Admin_model->vote_delete($vote_id);
+     $this->session->set_flashdata('feedback','Your Vote has been deleted successfully');
+     redirect('admin/Backend/voting');
+
+  }
+
+
+function question_delete($question_id){
+     $this->Admin_model->question_delete($question_id);
+     $this->session->set_flashdata('feedback','Your question has been deleted successfully');
+      // redirect()->back();
+      redirect('admin/backend/voting');
+
+  }
+
+  function manage_question($vote_id){
+
+  	$data = $this->data;
+  	$data['page_title'] 	= ' Questions';
+  	$data['vote_id'] = $vote_id;
+  	$data['questions'] = $this->Admin_model->get_questions($vote_id);
+  	$this->view('manage_question', $data);
+  }
+
+   function add_question($question_id = false, $vote_id = false){
+
+ 	
+  	$data = $this->data;
+  $data['page_title'] 	= ' Add question';
+				$data['question_name'] = '';
+				$data['option1'] =  '';
+				$data['option2'] = '';
+				$data['option3'] =  '';
+				$data['option4'] =  '';
+				$data['vote_id'] =  $vote_id;
+				$data['result'] =  ' result';
+		
+				if($question_id && $question_id != 'ABC' ){
+
+				$data['form_action'] =site_url($this->admin_folder . '/backend/add_question/'.$question_id);
+				 $data['page_title'] ='Edit Question';
+				$questions = $this->Admin_model->get_question($question_id);
+				// print_r($voting_details); exit();
+				$data['question_name'] = $questions->question_name;
+				$data['option1'] = $questions->option1;
+				$data['option2'] = $questions->option2;
+				$data['option3'] = $questions->option3;
+				$data['option4'] = $questions->option4;
+				$data['vote_id'] = $questions->vote_id;
+				$data['result'] = $questions->result;
+
+				}
+				else{
+							$data['form_action'] =site_url($this->admin_folder . '/backend/add_question/');
+							$data['page_title'] 	= ' Add question';
+				}
+
+   
+			    $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+			    $this->form_validation->set_rules('question_name','question_name','trim|required');
+			 
+			    if($this->form_validation->run() == FALSE)
+			    {
+			    $this->view('add_question',$data);
+
+			    }
+
+			    else{  
+ 		 		$saves['results']['0'] = $this->input->post('result');	
+ 				 //print_r( $saves['result']['0']); exit();
+ 		 		$save['result'] = $saves['results']['0']['0'];
+ 		 		//print_r( $save['result']); exit();
+			    $save['question_name']= $this->input->post('question_name');
+			     $save['option1']= $this->input->post('option1');
+			       $save['option2']= $this->input->post('option2');
+			       $save['option3']= $this->input->post('option3');
+			        $save['option4']= $this->input->post('option4');
+			         $save['vote_id']= $this->input->post('vote_id');
+			         
+// print_r($save); exit();
+			           
+					
+			    $result = $this->Admin_model->add_question($save, $question_id);
+			     $this->session->set_flashdata('success', 'Question add Successfully!');
+			    redirect('admin/backend/add_question');
+
+			
+		}
+  
+  
+  }
+
+
+
+
 	public function setting_form()
 	{
 		$data = $this->data;
@@ -515,13 +665,13 @@ class Backend extends Admin_Controller
 		}
 	}
 	
-		function amc_purchase_offers()
+		function user_details()
 		{
 			$data= $this->data;
-			$data['page_title'] = 'AMC Purchase Offers';
+			$data['page_title'] = 'Users';
 			$data['service_type'] = 1;
- 		$data['amc_purchase_offers'] = $this->Admin_model->get_amc_purchase_offers();
-			$this->view('amc_purchase_offers', $data);
+ 		$data['amc_purchase_offers'] = $this->Admin_model->get_user_details();
+			$this->view('user_details', $data);
 		}
 
 		function extend_warranty_purchase()
@@ -569,98 +719,133 @@ class Backend extends Admin_Controller
 			$this->view('amc_purchase_offers', $data);
 		}
 
-			function view_amc_purchase_offers($service_id)
+			function view_user_details($id)
 		{
 			$data= $this->data;
-		$data['page_title'] = 'Detail Information of AMC';
-		$data['form_action'] = 'Backend/view_amc_purchase_offers';
+		$data['page_title'] = 'User details';
+		$data['form_action'] = 'Backend/view_user_details';
+
+
+		 $country_option = array(''=>'---select country ---');
+            $country = $this->Admin_model->get_country(); 
+           // echo "<pre>";
+            // print_r($country);exit(); 
+            foreach ($country as  $value) {
+              $country_option[$value->id] = $value->name;
+            }
+          $data['country_option'] = $country_option;
+
+
+          $state_option = array(''=>'---select state ---');
+            $country = $this->Admin_model->get_all_state(); 
+           // echo "<pre>";
+            // print_r($country);exit(); 
+            foreach ($country as  $value) {
+              $state_option[$value->id] = $value->name;
+            }
+          $data['state_option'] = $state_option;
+       
+
+       $city_option = array(''=>'---Select City-----');
+      $city = $this->Admin_model->get_all_city();
+      foreach ($city as $value) {
+       $city_option[$value->id] = $value->name;
+      }
+       $data['city_option'] = $city_option;
+
+
 		
- 		$data['view_amc_purchase_offers'] = $this->Admin_model->view_amc_purchase_offers($service_id);
+ 		$data['view_user_details'] = $this->Admin_model->view_user_details($id);
  		 //print_r($data['view_amc_purchase_offers'] ); exit();
-			$this->view('view_amc_purchase_offers', $data);
+			$this->view('view_user_details', $data);
 		}
 
 	
 
 
-		function edit_amc_purchase_offers($service_id)
+		function edit_user_details($id)
 		{
 			
 			$data= $this->data;
-		$data['page_title'] = 'Edit Detail Information of AMC';
-		$data['form_action'] = 'Admin/Backend/edit_amc_purchase_offers/'.$service_id;
-		$service_record = $this->Admin_model->getservicerecord($service_id);
-		//print_r($service_record);exit();
-		$data['customer_code']=	$service_record->customer_code;
-		$data['customer_name']= $service_record->customer_name;
-		$data['customer_address']= $service_record->customer_address;
-		$data['customer_city']= $service_record->customer_city;
-		$data['pin_code']= $service_record->pin_code;
-		$data['customer_mobile']= $service_record->customer_mobile;
-		$data['product_category']= $service_record->product_category;
-		$data['machine_serial']= $service_record->machine_serial;
-		$data['model']= $service_record->model;
-		$data['brand']= $service_record->brand;
-		$data['date_of_purchase']= $service_record->date_of_purchase;
-		$data['picture_machine']= $service_record->picture_machine;
-		$data['certified']= $service_record->certified;
-		$data['machine_status']= $service_record->machine_status;
-		$data['technecian']= $service_record->technecian;
-		$data['icr_no']= $service_record->icr_no;
-		$data['icr_date']= $service_record->icr_date;
-		$data['free_cost']= $service_record->free_cost;
-		$data['chq_picture']=$service_record->chq_picture;
-		$data['amc_Date']= $service_record->amc_Date;
-		$data['amc_end_date']= $service_record->amc_end_date;
-		$data['payment_mode']= $service_record->payment_mode;
-		$data['chq_no']= $service_record->chq_no;
-		$data['icr_picture']=$service_record->icr_picture;
-		$data['chq_amount']= $service_record->chq_amount;
-		$data['technecian_name']= $service_record->technecian_name;
+		$data['page_title'] = 'Edit user Details';
+		$data['form_action'] = 'Admin/Backend/edit_user_details/'.$id;
+		$user_details = $this->Admin_model->view_user_details($id);
+		 
+
+ 
+           $country_option = array(''=>'---select country ---');
+            $country = $this->Admin_model->get_country(); 
+           // echo "<pre>";
+            // print_r($country);exit(); 
+            foreach ($country as  $value) {
+              $country_option[$value->id] = $value->name;
+            }
+          $data['country_option'] = $country_option;
+
+
+          $state_option = array(''=>'---select state ---');
+            $country = $this->Admin_model->get_all_state(); 
+           // echo "<pre>";
+            // print_r($country);exit(); 
+            foreach ($country as  $value) {
+              $state_option[$value->id] = $value->name;
+            }
+          $data['state_option'] = $state_option;
+       
+
+       $city_option = array(''=>'---Select City-----');
+      $city = $this->Admin_model->get_all_city();
+      foreach ($city as $value) {
+       $city_option[$value->id] = $value->name;
+      }
+       $data['city_option'] = $city_option;
+
+
+
+		 //print_r($user_details); exit();
+
+		$data['fname']=	$user_details->fname;
+		$data['lname']= $user_details->lname;
+		$data['username']= $user_details->username;
+		$data['dob']= $user_details->dob;
+		$data['mobile']= $user_details->mobile;
+		$data['email']= $user_details->email;
+		$data['address']= $user_details->address;
+		$data['country']= $country_option[$user_details->country];
+		$data['cities']= $city_option[$user_details->cities];
+		$data['pin_code']= $user_details->pin_code;
+		$data['state']= $state_option[$user_details->state];
+		
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		$this->form_validation->set_rules('customer_name','Customer Name','trim|required');
-		 $this->form_validation->set_rules('customer_code', 'Customer Code', 'trim|required|max_length[10]');
-			$this->form_validation->set_rules('model', 'Model', 'trim|required');
-			$this->form_validation->set_rules('technecian', 'Technecian Mobile No.', 'trim|required');
+		$this->form_validation->set_rules('fname',' Name','trim|required');
+		 $this->form_validation->set_rules('lname', ' Code', 'trim|required|max_length[10]');
+		
+			$this->form_validation->set_rules('mobile', ' Mobile No.', 'trim|required');
 		
 		
 
 		if ($this->form_validation->run() == false) {
-			$this->view('edit_amc_purchase_offers', $data);
+			$this->view('edit_user_details', $data);
 		} else{
 			
-            $save['customer_code']=$this->input->post('customer_code');
-            $save['customer_name']= $this->input->post('customer_name');
-            $save['customer_address']= $this->input->post('customer_address');
-            $save['customer_city']= $this->input->post('customer_city');
+            $save['fname']=$this->input->post('fname');
+            $save['lname']= $this->input->post('lname');
+            $save['username']= $this->input->post('username');
+            $save['dob']= $this->input->post('dob');
+            $save['mobile']= $this->input->post('mobile');
+            $save['email']= $this->input->post('email');
+            $save['country']= $this->input->post('country');
+            $save['address']= $this->input->post('address');
+            $save['cities']= $this->input->post('cities');
             $save['pin_code']= $this->input->post('pin_code');
-            $save['customer_mobile']= $this->input->post('customer_mobile');
-            $save['product_category']= $this->input->post('product_category');
-            $save['machine_serial']= $this->input->post('machine_serial');
-            $save['model']= $this->input->post('model');
-            $save['brand']= $this->input->post('brand');
-            $save['date_of_purchase']= $this->input->post('date_of_purchase');
-        	$save['picture_machine']= $this->input->post('picture_machine');
-            $save['certified']= $this->input->post('certified');
-            $save['machine_status']= $this->input->post('machine_status');
-            $save['technecian']= $this->input->post('technecian');
-            $save['icr_no']= $this->input->post('icr_no');
-            $save['icr_date']= $this->input->post('icr_date');
-            $save['free_cost']= $this->input->post('free_cost');
-             $save['icr_picture']= $this->input->post('icr_picture');
-            $save['amc_Date']= $this->input->post('amc_Date');
-            $save['amc_end_date']= $this->input->post('amc_end_date');
-            $save['payment_mode']= $this->input->post('payment_mode');
-            $save['chq_no']= $this->input->post('chq_no');
-             $save['chq_picture']= $this->input->post('chq_picture');
-            $save['chq_amount']= $this->input->post('chq_amount');
-            $save['technecian_name']= $this->input->post('technecian_name');
+            $save['state']= $this->input->post('state');
+        	
             // $save['service_type'] = 1;
 
 			 //print_r($save); exit();
-            $this->Admin_model->edit_amc_purchase_offers($service_id, $save);
+            $this->Admin_model->edit_user_details($id, $save);
     
-            redirect('admin/Backend/amc_purchase_offers/');
+            redirect('admin/Backend/user_details/');
 		}
 		
 	}
@@ -668,7 +853,7 @@ class Backend extends Admin_Controller
 
 
 
-			function delete_amc_purchase_offers($service_id)
+			function delete_user_details($id)
 		{
 			$data= $this->data;
  		$data['amc_purchase_offers'] = $this->Admin_model->delete_amc_purchase_offers($service_id);
@@ -681,14 +866,52 @@ class Backend extends Admin_Controller
 		function search_customer()
 		{
 			$data= $this->data;	
-			$data['page_title'] = 'Search Service Record';
-			$save['customer_name'] = $this->input->post('customer_name');
-			$save['service_type'] = $this->input->post('service_type');	
+			$data['page_title'] = 'Search User Record';
+			$save['fname'] = $this->input->post('fname');
+			$save['created'] = $this->input->post('created');	
 			$data['amc_purchase_offers'] = $this->Admin_model->search_customer($save);
 			//print_r($data['amc_purchase_offers']); exit();
 			
-			$this->view('amc_purchase_offers', $data);
+			$this->view('user_details', $data);
 		}
+
+
+function logout()
+  {
+    $this->auth->logout();
+    
+    //when someone logs out, automatically redirect them to the login page.
+    $this->session->set_flashdata('success', 'You have been logged out');
+    redirect($this->admin_folder.'/login');
+  }
+ 
+
+ function vote_status($vote_id, $status){
+
+ 	 // $status = $this->uri->segment(4); 
+    $this->Admin_model->vote_status($vote_id, $status);
+     $this->session->set_flashdata('success','Status  Deactive...');
+    redirect('admin/Backend/voting');
+
+ }
+
+  function question_status($question_id, $status){
+
+ 	 // $status = $this->uri->segment(4); 
+    $this->Admin_model->question_status($question_id, $status);
+     $this->session->set_flashdata('success','Status  Deactive...');
+    // redirect('admin/Backend/voting');
+     redirect($_SERVER['HTTP_REFERER']);
+
+ }
+
+
+function vote_update_status(){
+   $vote_result = $this->input->post('vote_status');
+    $this->Admin_model->status_votess($vote_result);
+
+    echo $vote_result; exit();
+}
 
 
 }

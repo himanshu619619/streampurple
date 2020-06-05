@@ -48,7 +48,32 @@ class Customers extends Customers_Controller {
 		$data['page_title']				=	'Docmed | Doctor';
 		$this->data['meta_title'] 			= 'Doctor';
 
-		$this->view('dashboard',$data);
+    $data['form_action'] = 'Customers';
+
+    $data['banner'] = $this->Customer_model->get_banners();
+    // print_r($data['banner']); exit();
+    $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+    $this->form_validation->set_rules('name','name','trim|required');
+    $this->form_validation->set_rules('message','message','trim|required');
+
+    
+    if($this->form_validation->run() == FALSE)
+    {
+    $this->view('dashboard',$data);
+
+    }
+
+    else{
+
+         $save['profile_id'] = $this->customer_ref->get_profile_id();
+    $save['name']= $this->input->post('name');
+		$save['message']= $this->input->post('message');
+    // print_r($save); exit();
+    $result = $this->Customer_model->save_message($save);
+     $this->session->set_flashdata('success', 'post Successfully!');
+    redirect('Customers');
+
+    }
 
 	}
 
@@ -67,33 +92,38 @@ class Customers extends Customers_Controller {
 
   public function account_setting(){
             $data = $this->data;
-          $profile_id=$this->Customer_ref->get_profile_id();
+          $profile_id = $this->customer_ref->get_profile_id();
           
           
            $country_option = array(''=>'---select country ---');
-            $country = $this->Customermodel_model->get_country(); 
+            $country = $this->Customer_model->get_country(); 
            // echo "<pre>";
             // print_r($country);exit(); 
             foreach ($country as  $value) {
               $country_option[$value->id] = $value->name;
             }
           $data['country_option'] = $country_option;
-          // echo "<pre>";
-             //print_r($data['country_option']);exit();
 
 
-$doctor_types = array(''=>'------select----');
-$drtype= $this->Customermodel_model->Customer_type();
-foreach($drtype as $value)
-{
+          $state_option = array(''=>'---select state ---');
+            $country = $this->Customer_model->get_state(); 
+           // echo "<pre>";
+            // print_r($country);exit(); 
+            foreach ($country as  $value) {
+              $state_option[$value->id] = $value->name;
+            }
+          $data['state_option'] = $state_option;
+       
 
-  $doctor_types[$value->id]  = $value->dr_type;
-}
-  $data['user_option']=$doctor_types;
-
+       $city_option = array(''=>'---Select City-----');
+      $city = $this->Customer_model->get_city();
+      foreach ($city as $value) {
+       $city_option[$value->id] = $value->name;
+      }
+       $data['city_option'] = $city_option;
           
           //print_r($data['user']);
-          $data['user']=$this->Customermodel_model->get_doctor_detail($profile_id);
+          $data['user']=$this->Customer_model->get_customer_detail($profile_id);
           $this->form_id = $profile_id;
             $this->form_validation->set_rules('fname', 'First Name', 'required');
                 $this->form_validation->set_rules('lname', 'Last Name', 'required');
@@ -113,24 +143,23 @@ foreach($drtype as $value)
                   $save['lname']         = $this->input->post('lname');
                   $save['username']      = $this->input->post('username');
                   $save['email']         = $this->input->post('email');
-                  $save['dr_type']      = $this->input->post('dr_type_id');
-                  $save['degree']         = $this->input->post('degree');
+                  $save['mobile']         = $this->input->post('mobile');
+                  $save['dob']         = $this->input->post('dob');
 
-                  $save['qualification'] = $this->input->post('qualification');
+               
                   $save['address']         = $this->input->post('address');
                   $save['country']         = $this->input->post('country');
                   $save['state']           = $this->input->post('state');
                   $save['cities']           = $this->input->post('cities');
                   $save['pin_code']           = $this->input->post('pin_code');
-                  $save['landmark']           = $this->input->post('landmark');
-                  $save['longitude']           = $this->input->post('longitude');
-                  $save['latitude']           = $this->input->post('latitude');
+                 
+                 
                   // echo "<pre>";
                   // print_r($save);exit();
 
-                        if($this->Customermodel_model->save_doc_profile($save)){
+                        if($this->Customer_model->save_customer_profile($save)){
 
-                           redirect('Doctor/account_setting');
+                           redirect('Customers/account_setting');
                         }else{
                           
                         }
@@ -138,10 +167,40 @@ foreach($drtype as $value)
        }
 
 
+ public function get_states(){
+  $data = $this->data;
+   $country_id= $this->input->post('country_id');
+    // print_r( $country_id); exit();
+   $state=$this->Customer_model->get_state_list($country_id);
+// print_r( $state); exit();
+   foreach ($state as  $value) {
+              $state_option[$value->id] = $value->name;
+            }
+          $data['state_option'] = $state_option;
+
+     echo  form_dropdown('state',$state_option,set_value('state'),'class = "form-control" onchange="get_city(this.value)"');
+   }
+
+   public function get_cities(){
+        $data = $this->data;
+    $state_id = $this->input->post('state_id');
+    // print_r($state_id);exit();
+    $cities = $this->Customer_model->get_cities_list($state_id);
+    //print_r($cities);
+    foreach ($cities as  $value) {
+              $cities_option[$value->id] = $value->name;
+            }
+          $data['cities_option'] = $cities_option;
+
+
+     echo  form_dropdown('cities',$cities_option,set_value('cities'),'class = "form-control"');
+   }
+
+
  public function username_check($username)
         {
 
-                $query=$this->Customermodel_model->check_username($username, $this->form_id);
+                $query=$this->Customer_model->check_username($username, $this->form_id);
 
                 if($query){
 
@@ -157,7 +216,7 @@ foreach($drtype as $value)
     public function email_check($email)
         {
 
-                $query=$this->Customermodel_model->check_email($email, $this->form_id);
+                $query=$this->Customer_model->check_email($email, $this->form_id);
 
                 if($query){
 
@@ -169,6 +228,52 @@ foreach($drtype as $value)
 
                 }
         }
+
+
+
+
+public function change_password(){
+          
+           $this->form_validation->set_rules('new_password','New Password','required|min_length[4]');
+           $this->form_validation->set_rules('confirm_password','Confirm Password','required|min_length[4]');
+
+           if($this->form_validation->run()==false){
+           
+           echo form_error('new_password');
+           echo form_error('confirm_password');
+            
+           }else{
+
+               $profile_id=$this->customer_ref->get_profile_id();
+                  $save=array();
+                  $save['profile_id'] = $profile_id;
+                  //print_r($save['profile_id']);exit();
+                  $save['new_password'] = $this->input->post('new_password');
+                $save['confirm_password'] = $this->input->post('confirm_password');
+                  if($save['new_password']!==$save['confirm_password']){
+
+                echo "Password could not Match";
+                  }else{
+
+                if($this->Customer_model->update_doc_password($save)){
+                  $this->session->set_flashdata('sucess','post Successfully!');
+                                       
+                  }                     
+                 }                
+                }
+           }
+
+
+
+      public function logout()
+  {
+    $this->auth->logout();
+    
+    //when someone logs out, automatically redirect them to the login page.
+    $this->session->set_flashdata('success', 'You have been logged out');
+    redirect('Frontend');
+  }
+
 
 
          public function photo_upload()
@@ -185,20 +290,21 @@ foreach($drtype as $value)
                 {
                         $error = $this->upload->display_errors();
                        // echo $error;exit();
-                        return redirect('Doctor/account_setting');
+                        return redirect('Customers/account_setting');
                 }
                 else
                 { 
                         $save=array();
-                        $save['profile_id']=$this->doctor_ref->get_profile_id();
+                        $save['profile_id']=$this->customer_ref->get_profile_id();
                         $path =  $this->upload->data();
                         //print_r($path);exit();
-                        $save['photo']=base_url().'uploads/user_photo/'.$path['raw_name'].$path['file_ext'];
+                        // $save['photo']=base_url().'uploads/user_photo/'.$path['raw_name'].$path['file_ext'];
+                          $save['photo']= $path['raw_name'].$path['file_ext'];
                         //print_r($save['photo']);exit();
                         
                        
-                    $this->Customermodel_model->save_user_photo($save);
-                    return redirect('Doctor/account_setting');
+                    $this->Customer_model->save_user_photo($save);
+                    return redirect('Customers/account_setting');
                       
                         
                 }
