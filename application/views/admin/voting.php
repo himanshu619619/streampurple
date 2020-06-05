@@ -41,10 +41,11 @@
 
 
 
-                  
-                <button type="button" class="btn btn-danger"  onclick="status_vote(<?php echo $vote_status_status; ?>)" >Hide Voting</button>
-              
-              
+              <?php if($vote_status_status == 1){     ?>              
+                <button type="button" class="btn btn-danger" id="vote" onclick="status_vote()" >Hide Voting</button>
+                <?php   } else { ?>  
+                  <button type="button" class="btn btn-success" id="vote" onclick="status_vote()" >Show Voting</button>
+                  <?php   } ?>  
 
           
                <a href="<?php echo base_url('admin/backend/hide_voting/') ?>"> 
@@ -177,18 +178,26 @@
  <script src="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"></script>
   <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script>
-function status_vote(vote_status){
-      //alert(vote_status);
-      var vote_status = vote_status;
-     // alert(vote_status);
+<?php echo 'var vote_status = '.$vote_status_status.';'; ?>
+function status_vote() {
      $.ajax({
-             type  : 'post',
-             url  : "<?php echo  base_url('admin/Backend/vote_update_status');?>",
-             data : {vote_status:vote_status},
-             success : function(data){
-                 alert(data);
-              $('#state_form').html(data);  
-             }
-         })
+             type: "POST",
+             url: "<?php echo  base_url('admin/Backend/vote_update_status');?>",
+             data: {vote_status:vote_status},
+          
+             success: function(data){
+                // alert(data);
+                vote_status = data;
+                if (data == 1) {
+                  $('#vote').html('Hide Voting').removeClass('btn-success').addClass('btn-danger');
+
+                } else {
+                  $('#vote').html('Show Voting').removeClass('btn-danger').addClass('btn-success');
+                }  
+             },
+             error:function(e, ts, et){ alert(ts.responseText);}
+         });
     }
 </script>
+
+

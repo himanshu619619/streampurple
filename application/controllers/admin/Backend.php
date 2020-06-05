@@ -907,10 +907,11 @@ function logout()
 
 
 function vote_update_status(){
-   $vote_result = $this->input->post('vote_status');
-    $this->Admin_model->status_votess($vote_result);
-
-    echo $vote_result; exit();
+	
+    $vote_result = $this->input->post('vote_status');
+    echo $this->Admin_model->status_votess($vote_result);
+	
+    // echo $vote_result;
 }
 
 

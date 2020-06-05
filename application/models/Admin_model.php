@@ -174,24 +174,20 @@ function get_questions($vote_id)
 		}
 	}
 
- function hide_vote()
- {
- 	return $this->db->select('*')->where('vote_status_id', 1)->get('vote_status')->row();
- }
+	function hide_vote()
+	{
+		return $this->db->select('*')->where('vote_status_id', 1)->get('vote_status')->row();
+	}
 
- function status_votess($vote_result)
- {
-if($vote_result == 1){
-$this->db->where->where('vote_status_id', 1)->set('vote_status', 0)->update('vote_status', $save);
-}else
-{
-$this->db->where('vote_status_id', 1)->set('vote_status', 1)->update('vote_status', $save);
-}
-
-
- }
-
-
-
+	function status_votess($vote_result)
+	{
+		if($vote_result == 1){
+			$this->db->where('vote_status_id', 1)->set('vote_status', 0)->update('vote_status');
+			return 0;
+		} else {
+			$this->db->where('vote_status_id', 1)->set('vote_status', 1)->update('vote_status');
+			return 1;
+		}
+	}
 }
  
