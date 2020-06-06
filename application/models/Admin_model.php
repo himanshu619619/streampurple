@@ -39,10 +39,10 @@ class Admin_model extends CI_model
 
 	}
 
-		function  delete_amc_purchase_offers($service_id)
+		function  delete_user_details($id)
 	{
 
-		return $this->db->where('service_id',$service_id)->delete('service_record');
+		return $this->db->where('id',$id)->delete('users');
 
 	}
 	function edit_user_details($id, $save)
@@ -179,6 +179,11 @@ function get_questions($vote_id)
 		return $this->db->select('*')->where('vote_status_id', 1)->get('vote_status')->row();
 	}
 
+		function hide_result()
+	{
+		return $this->db->select('*')->where('vote_status_id', 2)->get('vote_status')->row();
+	}
+
 	function status_votess($vote_result)
 	{
 		if($vote_result == 1){
@@ -186,6 +191,20 @@ function get_questions($vote_id)
 			return 0;
 		} else {
 			$this->db->where('vote_status_id', 1)->set('vote_status', 1)->update('vote_status');
+			return 1;
+		}
+	}
+
+
+	function status_votesss($vote_result)
+	{
+
+		if($vote_result == 1){
+
+			$this->db->where('vote_status_id', 2)->set('vote_status', 0)->update('vote_status');
+			return 0;
+		} else {
+			$this->db->where('vote_status_id', 2)->set('vote_status', 1)->update('vote_status');
 			return 1;
 		}
 	}

@@ -42,7 +42,10 @@ class Backend extends Admin_Controller
 			$data['voting'] =  $this->Admin_model->get_voting_name();
 			$vote_statuss =  $this->Admin_model->hide_vote();
 			$data['vote_status_status'] = $vote_statuss->vote_status;
-			//print_r($data['vote_status_status']); exit();
+
+			$result_statuss =  $this->Admin_model->hide_result();
+			$data['result_status_status'] = $result_statuss->vote_status;
+			//print_r($data['result_status_status']); exit();
 			$this->view('voting',$data);
 		}
 
@@ -174,7 +177,7 @@ function question_delete($question_id){
 					
 			    $result = $this->Admin_model->add_question($save, $question_id);
 			     $this->session->set_flashdata('success', 'Question add Successfully!');
-			    redirect('admin/backend/add_question');
+			    redirect('admin/backend/voting');
 
 			
 		}
@@ -856,7 +859,7 @@ function question_delete($question_id){
 			function delete_user_details($id)
 		{
 			$data= $this->data;
- 		$data['amc_purchase_offers'] = $this->Admin_model->delete_amc_purchase_offers($service_id);
+ 		$data['amc_purchase_offers'] = $this->Admin_model->delete_user_details($id);
 			
 					redirect($_SERVER['HTTP_REFERER']);
 
@@ -886,33 +889,42 @@ function logout()
   }
  
 
- function vote_status($vote_id, $status){
+	function vote_status($vote_id, $status){
 
- 	 // $status = $this->uri->segment(4); 
-    $this->Admin_model->vote_status($vote_id, $status);
-     $this->session->set_flashdata('success','Status  Deactive...');
-    redirect('admin/Backend/voting');
+		// $status = $this->uri->segment(4); 
+		$this->Admin_model->vote_status($vote_id, $status);
+		$this->session->set_flashdata('success','Status  Deactive...');
+		redirect('admin/Backend/voting');
 
- }
+	}
 
-  function question_status($question_id, $status){
+	function question_status($question_id, $status){
 
- 	 // $status = $this->uri->segment(4); 
-    $this->Admin_model->question_status($question_id, $status);
-     $this->session->set_flashdata('success','Status  Deactive...');
-    // redirect('admin/Backend/voting');
-     redirect($_SERVER['HTTP_REFERER']);
+		// $status = $this->uri->segment(4); 
+		$this->Admin_model->question_status($question_id, $status);
+		$this->session->set_flashdata('success','Status  Deactive...');
+		// redirect('admin/Backend/voting');
+		redirect($_SERVER['HTTP_REFERER']);
 
- }
+	}
 
 
-function vote_update_status(){
-	
-    $vote_result = $this->input->post('vote_status');
-    echo $this->Admin_model->status_votess($vote_result);
-	
-    // echo $vote_result;
-}
+	function vote_update_status(){
+		
+		$vote_result = $this->input->post('vote_status');
+		echo $this->Admin_model->status_votess($vote_result);
+		
+		// echo $vote_result;
+	}
+
+		function result_update_status(){
+		
+		$vote_result = $this->input->post('result_status');
+		
+		echo $this->Admin_model->status_votesss($vote_result);
+		
+		// echo $vote_result;
+	}
 
 
 }

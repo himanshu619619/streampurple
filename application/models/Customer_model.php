@@ -534,4 +534,51 @@ public function save_customer_profile($data=array()){
 
     return $this->db->select('*')->where('id', 1)->get('hidden_text')->row();
   }
+
+ function get_all_questions()
+  {
+
+     $vote_status =  $this->db->select('vote_id')->where('status', 1)->get('vote_name')->row();
+      // print_r( $vote_status->vote_id); exit();
+     return $this->db->select('*')->where('status', 1)->where('vote_id', $vote_status->vote_id)->get('questions')->result();
+  }
+
+  function save_answers($save)
+  {
+
+   // print_r($save['result']); exit();
+      $len =  count($save['result']);
+    //print_r($len); exit();
+
+   foreach ($save['result'] as $key => $value) {
+    
+      $question_choose  = $this->db->select('result')->where('question_id', $key)->get('questions')->row();
+      //print_r($question_choose->result); exit();
+        if($question_choose->result == $value)
+        {
+          $wrq = 1;
+        } else{
+          $wrq = 0;
+        }
+   
+       $this->db->insert('answers', ['answers'=>$value, 'question_id'=>$key, 'profile_id'=>$save['profile_id'], 'wrq'=>$wrq]);
+    }
+
+     $vote_ids =  $this->db->select('vote_id')->where('status', 1)->get('vote_name')->row();
+      //print_r($vote_ids->vote_id); exit();
+      $this->db->insert('mcq_completed', ['completed_status'=>1, 'vote_id'=>$vote_ids->vote_id, 'profile_id'=>$save['profile_id']]);
+  return true;
+   
+  }
+
+
+  function get_completed_status($profile_id)
+  {
+
+     $vote_ids =  $this->db->select('vote_id')->where('status', 1)->get('vote_name')->row();
+    return $this->db->select('completed_status')->where('profile_id', $profile_id)->where('vote_id', $vote_ids->vote_id)->get('mcq_completed')->row();
+  }
+
+
+  
 }

@@ -47,11 +47,17 @@
                   <button type="button" class="btn btn-success" id="vote" onclick="status_vote()" >Show Voting</button>
                   <?php   } ?>  
 
-          
-               <a href="<?php echo base_url('admin/backend/hide_voting/') ?>"> 
-                <button type="button" class="btn btn-success" >Show Result</button>
 
-                </a>
+ <?php if($result_status_status == 1){     ?>              
+                <button type="button" class="btn btn-danger" id="result" onclick="status_result()" >Hide Result</button>
+                <?php   } else { ?>  
+                  <button type="button" class="btn btn-success" id="result" onclick="status_result()" >Show Result</button>
+                  <?php   } ?>  
+
+          
+              
+
+               
              </div>
             
 
@@ -193,6 +199,29 @@ function status_vote() {
 
                 } else {
                   $('#vote').html('Show Voting').removeClass('btn-danger').addClass('btn-success');
+                }  
+             },
+             error:function(e, ts, et){ alert(ts.responseText);}
+         });
+    }
+</script>
+
+<script>
+<?php echo 'var result_status = '.$result_status_status.';'; ?>
+function status_result() {
+     $.ajax({
+             type: "POST",
+             url: "<?php echo  base_url('admin/Backend/result_update_status');?>",
+             data: {result_status:result_status},
+          
+             success: function(data){
+                 //alert(data);
+                result_status = data;
+                if (data == 1) {
+                  $('#result').html('Hide Result').removeClass('btn-success').addClass('btn-danger');
+
+                } else {
+                  $('#result').html('Show Result').removeClass('btn-danger').addClass('btn-success');
                 }  
              },
              error:function(e, ts, et){ alert(ts.responseText);}

@@ -311,7 +311,48 @@ public function change_password(){
         }
 
 
+        function give_vote(){
 
+         $data =  $this->data;
+            $data['page_title'] =  'MCQ';
+         $data['form_action'] = 'Customers/give_vote';
+        $data['all_questions'] = $this->Customer_model->get_all_questions();
+          //print_r( $data['all_questions']); exit();
+        $profile_id = $this->customer_ref->get_profile_id();
+        $data['completed_status'] = $this->Customer_model->get_completed_status($profile_id);
+         //print_r( $data['completed_status']); exit();
+        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+        foreach ($data['all_questions'] as $value) {
+         $this->form_validation->set_rules($value->question_id,'$value->question_id','trim|required');
+        }
+       
+ 
+        if($this->form_validation->run() == FALSE)
+        {
+            $this->view('give_vote',$data);
+         }
+
+          else{
+     
+         $save['profile_id'] = $this->customer_ref->get_profile_id();
+         $save['result']  = $this->input->post();
+         $result = $this->Customer_model->save_answers($save);
+        $this->session->set_flashdata('success', 'post Successfully!');
+        redirect('Customers/give_vote');
+
+    }
+
+       //  $this->view('give_vote', $data);
+        }
+
+
+        function vote_result(){
+
+         $data =  $this->data;
+
+
+         $this->view('vote_result', $data);
+        }
 
 
 }

@@ -119,7 +119,7 @@
                               <td class="text-nowrap">
                                   <a href="<?php echo base_url('admin/backend/view_user_details/'.$value->id) ?>" data-toggle="tooltip" data-original-title="View"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
                                   <a href="<?php echo base_url('admin/backend/edit_user_details/'.$value->id) ?>" data-toggle="tooltip" data-original-title="edit"> <i class="fa fa-edit text-inverse m-r-10"></i> </a>
-                                 <!--  <a href="<?php echo base_url('admin/backend/delete_user_details/'.$value->id)?>" onclick="return confirm('are you sure');" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a> -->
+                                  <a href="<?php echo base_url('admin/backend/delete_user_details/'.$value->id)?>" onclick="return confirm('are you sure');" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
                               </td>
                           </tr>
                           <?php } ?>
