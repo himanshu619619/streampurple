@@ -138,6 +138,9 @@
   <li> <a href="<?php echo base_url('admin/Backend/voting'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span
                                 class="hide-menu"> Voting <span class="fa arrow"></span></span></a>
  </li>
+
+ <li> <a href="<?php echo base_url('admin/Backend/voting_result'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span class="hide-menu">Live Voting Result <span class="fa arrow"></span></span></a>
+ </li>
                    
              
 

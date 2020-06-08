@@ -35,7 +35,7 @@
 
                             <div class="panel-wrapper collapse in" aria-expanded="true">
                                 <div class="panel-body">
-                                  <?php if($completed_status->completed_status == 1) { ?>
+                                  <?php if(@$completed_status->completed_status == 1) { ?>
 
                                    <center> <h2> You have already give a Voting!  </h2> </center>
 

@@ -208,5 +208,36 @@ function get_questions($vote_id)
 			return 1;
 		}
 	}
+
+
+	function get_answer_result()
+	{
+
+		
+
+		return $this->db->select('*')->where('vote_id', $vote_id->vote_id)->get('questions')->result();
+	}	
+
+
+
+	function get_mcq_percentage()
+
+	{
+
+		$vote_id =  $this->db->select('vote_id')->where('status', 1)->get('vote_name')->row();
+
+
+			$query =  $this->db->query("SELECT *, 
+IFNULL((SELECT COUNT(op1_ans.answers_id) from `wr_answers` op1_ans where op1_ans.question_id = wrq.question_id AND op1_ans.answers = wrq.option1) * 100 / (SELECT COUNT(op1_tot.answers_id) from `wr_answers` op1_tot where op1_tot.question_id = wrq.question_id), 0) as pct1,
+IFNULL((SELECT COUNT(op2_ans.answers_id) from `wr_answers` op2_ans where op2_ans.question_id = wrq.question_id AND op2_ans.answers = wrq.option2) * 100 / (SELECT COUNT(op2_tot.answers_id) from `wr_answers` op2_tot where op2_tot.question_id = wrq.question_id), 0) as pct2,
+IFNULL((SELECT COUNT(op3_ans.answers_id) from `wr_answers` op3_ans where op3_ans.question_id = wrq.question_id AND op3_ans.answers = wrq.option3) * 100 / (SELECT COUNT(op3_tot.answers_id) from `wr_answers` op3_tot where op3_tot.question_id = wrq.question_id), 0) as pct3,
+IFNULL((SELECT COUNT(op4_ans.answers_id) from `wr_answers` op4_ans where op4_ans.question_id = wrq.question_id AND op4_ans.answers = wrq.option4) * 100 / (SELECT COUNT(op4_tot.answers_id) from `wr_answers` op4_tot where op4_tot.question_id = wrq.question_id), 0) as pct4 
+FROM `wr_questions` wrq where wrq.vote_id = '".$vote_id->vote_id."' AND wrq.status = 1" );
+
+		return $query->result(); 
+
+
+	}
+
 }
  

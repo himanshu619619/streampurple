@@ -927,4 +927,18 @@ function logout()
 	}
 
 
+		function voting_result()
+		{
+
+			$data= $this->data;
+			$data['page_title'] = 'Voting Result';
+			
+ 		//$data['voting_result'] = $this->Admin_model->get_answer_result();
+ 		$data['voting_result'] = $this->Admin_model->get_mcq_percentage();
+ 		//print_r($data['voting_result']);  		exit();
+
+ 
+			$this->view('voting_result', $data);
+		}
+
 }
