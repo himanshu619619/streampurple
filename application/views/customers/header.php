@@ -95,10 +95,10 @@
                  <br>
                     <li> <a href="<?php echo base_url('Customers'); ?>" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard </span></a></li>
                   
-                    <li> <a href="<?php echo base_url('Customers/give_vote'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span class="hide-menu">Give Voting <span class="fa arrow"></span></span></a>
+                    <li id="hide_button"> <a href="<?php echo base_url('Customers/give_vote'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span class="hide-menu">Give Voting <span class="fa arrow"></span></span></a>
                    
                     </li>
-                     <li> <a href="<?php echo base_url('Customers/vote_result'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span class="hide-menu">See Result <span class="fa arrow"></span></span></a>
+                     <li id="hide_result_button"> <a href="<?php echo base_url('Customers/vote_result'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span class="hide-menu">See Result <span class="fa arrow"></span></span></a>
                    
                     </li>
 
@@ -122,3 +122,4 @@
                 </ul>
             </div>
         </div>
+

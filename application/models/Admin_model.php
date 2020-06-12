@@ -239,5 +239,102 @@ FROM `wr_questions` wrq where wrq.vote_id = '".$vote_id->vote_id."' AND wrq.stat
 
 	}
 
+
+	function add_announcement($save)
+	{
+		$this->db->where('announcement_id', 1)->update('announcement', $save);
+	}
+
+	function get_announcement()
+	{
+		return $this->db->select('*')->where('announcement_id', 1)->get('announcement')->row();
+	}
+
+	function get_pending_question()
+	{
+		return $this->db->select('*')->get('message')->result();
+	}
+
+
+	function  pending_question_delete($message_id)
+	{
+
+		return $this->db->where('message_id',$message_id)->delete('message');
+
+	}
+
+	function  ppt_delete($ppt_id)
+	{
+
+		return $this->db->where('ppt_id',$ppt_id)->delete('ppt_upload');
+
+	}
+
+	function pending_question_status($status, $message_id)
+	{
+		if($status == 1 ){
+		$this->db->select('*')->where('message_id', $message_id)->set('status', 0)->update('message');
+	    }else{
+			$this->db->select('*')->where('message_id', $message_id)->set('status', 1)->update('message');
+		}
+	}
+
+	function ppt_status($status, $ppt_id)
+	{
+		if($status == 1 ){
+		$this->db->select('*')->where('status', 0)->set('status', 1)->update('ppt_upload');
+		$this->db->select('*')->where('ppt_id', $ppt_id)->set('status', 0)->update('ppt_upload');
+	    }else{
+			$this->db->select('*')->where('status', 1)->set('status', 0)->update('ppt_upload');
+			$this->db->select('*')->where('ppt_id', $ppt_id)->set('status', 1)->update('ppt_upload');
+		}
+	}
+
+	function  get_banner_uploads()
+	{
+
+		return $this->db->where('banner_id',1)->get('banners')->row();
+
+	}
+
+	function  get_banner_uploads_2()
+	{
+
+		return $this->db->where('banner_id',2)->get('banners')->row();
+
+	}
+
+	function update_banner($save)
+	{
+		
+			$this->db->select('*')->where('banner_id', 1)->set('banner_name', $save['banner_name'])->update('banners');
+	
+	}
+
+	function update_banner2($save)
+	{
+		
+			$this->db->select('*')->where('banner_id', 2)->set('banner_name', $save['banner_name'])->update('banners');
+	
+	}
+
+	function get_ppt()
+	{
+		
+			return $this->db->select('*')->get('ppt_upload')->result();
+	
+	}
+
+	function save_ppt($save)
+	{
+
+		
+		{
+			return $this->db->insert('ppt_upload', $save);
+		
+		}
+
+	}
+
 }
  

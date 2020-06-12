@@ -141,6 +141,20 @@
 
  <li> <a href="<?php echo base_url('admin/Backend/voting_result'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span class="hide-menu">Live Voting Result <span class="fa arrow"></span></span></a>
  </li>
+
+  <li> <a href="<?php echo base_url('admin/Backend/ppt_upload'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span class="hide-menu">PPT upload <span class="fa arrow"></span></span></a>
+ </li>
+  
+
+ <li> <a href="<?php echo base_url('admin/Backend/banner_uploads'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span class="hide-menu">Banner upload <span class="fa arrow"></span></span></a>
+ </li>
+ <li> <a href="<?php echo base_url('admin/Backend/question'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span class="hide-menu">Question <span class="fa arrow"></span></span></a>
+ </li>
+ <li> <a href="<?php echo base_url('admin/Backend/pending_question'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span class="hide-menu">Pending Question <span class="fa arrow"></span></span></a>
+ </li>
+
+ <li> <a href="<?php echo base_url('admin/Backend/add_announcement'); ?>" class="waves-effect"><i class="ti-calendar p-r-10"></i> <span class="hide-menu">Announcement <span class="fa arrow"></span></span></a>
+ </li>
                    
              
 

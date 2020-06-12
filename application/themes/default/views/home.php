@@ -4,7 +4,7 @@
 
   
     <div class="col-md-8 " style="  margin:50px 0px;">
-      <img src="<?php echo base_url('assets/theme');?>/images/<?php echo $banner->banner_name; ?>" class="img-responsive" style="filter: drop-shadow(2px 4px 6px black)">
+      <img src="<?php echo base_url('assets/theme');?>/images/header_banner/<?php echo $banner->banner_name; ?>" class="img-responsive" style="filter: drop-shadow(2px 4px 6px black)">
 
     </div>
  <div class="col-md-4">

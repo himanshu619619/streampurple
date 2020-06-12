@@ -941,4 +941,233 @@ function logout()
 			$this->view('voting_result', $data);
 		}
 
+
+		function add_announcement()
+		{
+
+			$data= $this->data;
+			$data['page_title'] = 'Add announcement';
+			$data['form_action'] = 'Admin/Backend/add_announcement';
+			$data['add_announcement'] = $this->Admin_model->get_announcement();
+			$data['announcement_name'] = $data['add_announcement']->announcement_name;
+
+			$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('announcement_name',' announcement_name','trim|required');
+
+		if ($this->form_validation->run() == false) {
+			$this->view('add_announcement', $data);
+		} else{
+
+			$save['announcement_name'] = $this->input->post('announcement_name');
+
+			$data['add_announcement'] = $this->Admin_model->add_announcement($save);
+			$this->session->set_flashdata('success', 'announcement name add Successfully!');
+			redirect('admin/Backend/add_announcement');
+
+		}	
+ 		
+		}
+
+
+		function pending_question(){
+			$data= $this->data;
+			$data['page_title'] = 'Pending question';
+			$data['pending_question'] = $this->Admin_model->get_pending_question();
+			$this->view('pending_question', $data);
+		}
+
+
+		function question(){
+			$data= $this->data;
+			$data['page_title'] = 'Final question';
+			$data['question'] = $this->Admin_model->get_pending_question();
+			$this->view('question', $data);
+		}
+
+
+	function pending_question_delete($message_id){
+     $this->Admin_model->pending_question_delete($message_id);
+     $this->session->set_flashdata('feedback','Your Vote has been deleted successfully');
+     redirect('admin/Backend/pending_question');
+
+  	}
+
+  	function ppt_delete($ppt_id){
+     $this->Admin_model->ppt_delete($ppt_id);
+     $this->session->set_flashdata('feedback','Your ppte has been deleted successfully');
+     redirect('admin/Backend/ppt_upload');
+
+  	}
+
+  	function pending_question_status($status, $message_id){
+		$this->Admin_model->pending_question_status($status, $message_id);
+		$this->session->set_flashdata('success','pending question  Deactive...');
+		redirect('admin/Backend/pending_question');
+	}
+
+	
+
+
+	function banner_uploads($result = false){
+			$data= $this->data;
+			$data['page_title'] = 'banner uploads';
+			$data['form_action'] = 'admin/Backend/banner_uploads';
+			$data['form_action2'] = 'admin/Backend/banner_uploads/2';
+			$data['banner'] = $this->Admin_model->get_banner_uploads();
+			
+			$data['banner_name'] = $data['banner']->banner_name;
+			$data['banner2'] = $this->Admin_model->get_banner_uploads_2();
+			//print_r($_FILES);exit();
+
+			if($result == 2)
+			{
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		 $this->form_validation->set_rules('name','  name','required');
+
+		if ($this->form_validation->run() == false) {
+			$this->view('banner_upload', $data);
+		} else{
+
+			
+			$config['upload_path']          = './assets/theme/images/header_banner';
+			$config['allowed_types']        = 'png|jpeg|jpg';
+			// $config['max_size']             = 100;
+			// $config['max_width']            = 1024;
+			// $config['max_height']           = 768;
+			$this->load->library('upload', $config);
+
+	
+			if (!$this->upload->do_upload('banner_name')) {
+				$error = array('error' => $this->upload->display_errors());
+			} else {
+				$fileData1 = $this->upload->data();
+			}
+			
+			$save = array();
+			if (@$fileData1['file_name']) {
+				$path1 =  $fileData1;
+				//                   //print_r($path);exit();
+				$save['banner_name'] = $path1['raw_name'] . $path1['file_ext'];
+				//print_r($save['photo']);exit();
+			}
+
+			
+			$data['banner_name'] = $this->Admin_model->update_banner2($save);
+			$this->session->set_flashdata('success', 'announcement name add Successfully!');
+			redirect('admin/Backend/banner_uploads');
+
+		}
+
+			}else{
+
+
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		 $this->form_validation->set_rules('name','  name','required');
+
+		if ($this->form_validation->run() == false) {
+			$this->view('banner_upload', $data);
+		} else{
+
+			
+			$config['upload_path']          = './assets/theme/images/header_banner';
+			$config['allowed_types']        = 'png|jpeg|jpg';
+			// $config['max_size']             = 100;
+			// $config['max_width']            = 1024;
+			// $config['max_height']           = 768;
+			//$config['encrypt_name'] = TRUE;
+			$this->load->library('upload', $config);
+
+
+			if (!$this->upload->do_upload('banner_name')) {
+				$error = array('error' => $this->upload->display_errors());
+			} else {
+				$fileData1 = $this->upload->data();
+			}
+			
+			$save = array();
+			if (@$fileData1['file_name']) {
+				$path1 =  $fileData1;
+				//                   //print_r($path);exit();
+				$save['banner_name'] = $path1['raw_name'] . $path1['file_ext'];
+				//print_r($save['photo']);exit();
+			}
+
+			
+			$data['banner_name'] = $this->Admin_model->update_banner($save);
+			$this->session->set_flashdata('success', 'announcement name add Successfully!');
+			redirect('admin/Backend/banner_uploads');
+
+		}}
+
+
+			
+	}
+
+
+	function ppt_upload(){
+			$data= $this->data;
+			$data['page_title'] = 'banner uploads';
+			$data['form_action'] = 'admin/Backend/ppt_upload';
+		
+			$data['banner'] = $this->Admin_model->get_banner_uploads();
+			$data['ppt'] = $this->Admin_model->get_ppt();
+			//print_r($data['ppt']);exit();
+
+		
+
+
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		 $this->form_validation->set_rules('name','  name','required');
+
+		if ($this->form_validation->run() == false) {
+			$this->view('ppt_upload', $data);
+		} else{
+
+			
+			$config['upload_path']          = './assets/theme/images/ppt';
+			$config['allowed_types']        = '*';
+			 $config['remove_spaces'] = TRUE;
+			// $config['max_size']             = 500024;
+			// $config['max_width']            = 1024;
+			// $config['max_height']           = 768;
+			//$config['encrypt_name'] = TRUE;
+			$this->load->library('upload', $config);
+
+			//print_r($_FILES); exit();
+			if (!$this->upload->do_upload('ppt_name')) {
+				$error = array('error' => $this->upload->display_errors());
+			} else {
+				$fileData1 = $this->upload->data();
+			}
+			
+				//print_r($th
+			$save = array();
+			if (@$fileData1['file_name']) {
+				$path1 =  $fileData1;
+				//                   //print_r($path);exit();
+				$save['ppt_name'] = $path1['raw_name'] . $path1['file_ext'];
+				//print_r($save['photo']);exit();
+			}
+
+			$save['status'] = 0;
+			 $this->Admin_model->save_ppt($save);
+			$this->session->set_flashdata('success', ' ppt add Successfully!');
+			redirect('admin/Backend/ppt_upload');
+
+		}
+
+
+			
+	}
+
+	function ppt_status($status, $ppt_id){
+		$this->Admin_model->ppt_status($status, $ppt_id);
+		//$this->session->set_flashdata('success','ppt  Deactive...');
+		redirect('admin/Backend/ppt_upload');
+	}
+
+
+
+
+
 }

@@ -49,8 +49,9 @@ class Customers extends Customers_Controller {
 		$this->data['meta_title'] 			= 'Doctor';
 
     $data['form_action'] = 'Customers';
-
+  $data['announcement'] = $this->Customer_model->get_announcement();
     $data['banner'] = $this->Customer_model->get_banners();
+      $data['ppt'] = $this->Customer_model->get_ppt();
     // print_r($data['banner']); exit();
     $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
     $this->form_validation->set_rules('name','name','trim|required');
@@ -66,7 +67,9 @@ class Customers extends Customers_Controller {
     else{
 
          $save['profile_id'] = $this->customer_ref->get_profile_id();
+         $email = $this->customer_ref->get_user_detail();
     $save['name']= $this->input->post('name');
+    $save['email']= $email->email;
 		$save['message']= $this->input->post('message');
     // print_r($save); exit();
     $result = $this->Customer_model->save_message($save);
@@ -352,6 +355,18 @@ public function change_password(){
 
 
          $this->view('vote_result', $data);
+        }
+
+        function get_vote_buttons(){
+         $vote_button = $this->Customer_model->get_vote_button();
+            
+           print_r($vote_button->vote_status);
+        }
+
+         function get_result_buttons(){
+         $vote_button = $this->Customer_model->get_result_button();
+            
+           print_r($vote_button->vote_status);
         }
 
 

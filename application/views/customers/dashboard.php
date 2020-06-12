@@ -10,26 +10,34 @@
                <div class="row bg-title">
                   <!-- .page title -->
                   <div class="col-lg-12 col-md-4 col-sm-4 col-xs-12">
-                     <h4 class="page-title" style=" color:red;"><marquee>Sanjay Gupta Toppers Institute, Online Classes, No.1 institute in Delhi NCR.</marquee></h4>
+                     <h4 class="page-title" style=" color:red;"><marquee><?php echo $announcement->announcement_name; ?></marquee></h4>
                   </div>
                   <!-- /.page title -->
                  
                </div>
+                <img src="<?php echo base_url('assets/theme');?>/images/header_banner/<?php echo $banner->banner_name; ?>" class="img-responsive" style="filter: border: 2px solid rgba(0,0,0,0.1);">
               <!-- .row -->
-                <div>
-     <img src="<?php echo base_url('assets/theme');?>/images/<?php echo $banner->banner_name; ?>" class="img-responsive" style="filter: border: 2px solid rgba(0,0,0,0.1);">
-   </div>
+             <div class="row">  
+                <div class="col-md-6">
+    
+
 
                         <div class="video-section">
                        
 
-                        <div id="swap-video" class="swap-video-left1">
-                            <div id="media">
-                              
-                                <iframe id="" src="https://webcastlive.co.in/player/play_sc.php?event_id=demo_purplewave002" width="100%" height="300px" marginheight="0" frameborder="0" scrolling="no"  allowfullscreen="allowfullscreen"></iframe>
-                            </div>
-                        </div>
+                     <div id="swap-video" class="swap-video-left1">
+              <div id="media">
+               
+                <iframe id="" src="https://webcastlive.co.in/player/play_sc.php?event_id=demo_purplewave002" width="100%" height="300px" marginheight="0" frameborder="0" scrolling="no"  allowfullscreen="allowfullscreen"></iframe>
+              </div>
+            </div>
                     </div>
+   </div>
+ <div class="col-md-6">
+ <iframe src='https://view.officeapps.live.com/op/embed.aspx?src=<?php echo base_url('assets/theme/images/ppt'); echo "/"; echo $ppt->ppt_name; ?>' width='100%' height='300px' frameborder='0'></iframe>
+ </div>
+
+ </div>
 
  <div class="row">
                     <div class="col-md-12">

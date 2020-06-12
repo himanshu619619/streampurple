@@ -102,5 +102,54 @@
 </body>
 
 
+<script>
+setInterval(hide_vote_button, 3000); 
+function hide_vote_button() {
+    var vote_status = 1;
+     $.ajax({
+             type: "POST",
+             url: "<?php echo base_url('customers/get_vote_buttons');?>",
+             data: {vote_status},
+          
+             success: function(data){
+                
+                 if(data == 1){
+                      $("#hide_button").show();
+                }else{
+                    //alert(data);
+                     $("#hide_button").hide();
+                 }
+
+             },
+             error:function(e, ts, et){ alert(ts.responseText);}
+         });
+    }
+</script>
+
+<script>
+setInterval(hide_result_button, 3000); 
+function hide_result_button() {
+    var vote_status = 1;
+     $.ajax({
+             type: "POST",
+             url: "<?php echo base_url('customers/get_result_buttons');?>",
+             data: {vote_status},
+          
+             success: function(data){
+                
+                 if(data == 1){
+                      $("#hide_result_button").show();
+                }else{
+                    //alert(data);
+                     $("#hide_result_button").hide();
+                 }
+
+             },
+             error:function(e, ts, et){ alert(ts.responseText);}
+         });
+    }
+</script>
+
+
 
 </html>

@@ -529,10 +529,10 @@ public function save_customer_profile($data=array()){
     return $this->db->select('*')->where('slug', $slug)->get('user_type')->row();
   }
 
-  function hiddentext2()
+  function get_ppt()
   {
 
-    return $this->db->select('*')->where('id', 1)->get('hidden_text')->row();
+    return $this->db->select('*')->where('status', 1)->get('ppt_upload')->row();
   }
 
  function get_all_questions()
@@ -579,6 +579,19 @@ public function save_customer_profile($data=array()){
     return $this->db->select('completed_status')->where('profile_id', $profile_id)->where('vote_id', $vote_ids->vote_id)->get('mcq_completed')->row();
   }
 
+  function get_announcement(){
+      return $this->db->select('*')->where('announcement_id', 1)->get('announcement')->row();
+        }
+
+
+        function get_vote_button(){
+
+          return $this->db->select("vote_status")->where("vote_status_id", 1)->get('vote_status')->row();
+        }
+         function get_result_button(){
+
+          return $this->db->select("vote_status")->where("vote_status_id", 2)->get('vote_status')->row();
+        }
 
   
 }
