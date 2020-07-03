@@ -103,7 +103,7 @@
 
 
 <script>
-setInterval(hide_vote_button, 3000); 
+setInterval(hide_vote_button, 1000); 
 function hide_vote_button() {
     var vote_status = 1;
      $.ajax({
@@ -127,7 +127,7 @@ function hide_vote_button() {
 </script>
 
 <script>
-setInterval(hide_result_button, 3000); 
+setInterval(hide_result_button, 1000); 
 function hide_result_button() {
     var vote_status = 1;
      $.ajax({

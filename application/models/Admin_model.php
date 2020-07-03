@@ -179,6 +179,11 @@ function get_questions($vote_id)
 		return $this->db->select('*')->where('vote_status_id', 1)->get('vote_status')->row();
 	}
 
+	function hide_PPT()
+	{
+		return $this->db->select('*')->where('vote_status_id', 3)->get('vote_status')->row();
+	}
+
 		function hide_result()
 	{
 		return $this->db->select('*')->where('vote_status_id', 2)->get('vote_status')->row();
@@ -205,6 +210,20 @@ function get_questions($vote_id)
 			return 0;
 		} else {
 			$this->db->where('vote_status_id', 2)->set('vote_status', 1)->update('vote_status');
+			return 1;
+		}
+	}
+
+
+	function status_ppt($ppt_result)
+	{
+
+		if($ppt_result == 1){
+
+			$this->db->where('vote_status_id', 3)->set('vote_status', 0)->update('vote_status');
+			return 0;
+		} else {
+			$this->db->where('vote_status_id', 3)->set('vote_status', 1)->update('vote_status');
 			return 1;
 		}
 	}
@@ -335,6 +354,52 @@ FROM `wr_questions` wrq where wrq.vote_id = '".$vote_id->vote_id."' AND wrq.stat
 		}
 
 	}
+
+	
+
+	function get_vote_active(){
+		return $this->db->select("vote_name")->where("status", 1)->get("vote_name")->row();
+	}
+
+	function get_user_results($save)
+	{
+		//return $save;
+		 $vote_id = $this->db->select("vote_id")->where("status", 1)->get("vote_name")->row();
+		//print_r($vote_name); exit();
+		return $this->db->select("*")->where("vote_id", $vote_id->vote_id)->where('profile_id', $save)->get("answers")->result();
+	}
+
+	function get_user_resultsss(){
+		 $vote_id = $this->db->select("vote_id")->where("status", 1)->get("vote_name")->row();
+		//print_r($vote_name); exit();
+		return $this->db->select("*")->where("vote_id", $vote_id->vote_id)->get("answers")->result();
+	}
+
+
+	function table_emp(){
+		
+		$this->db->empty_table('pdf_image'); 	
+}
+
+	function save_pdf_image($save){
+		
+		
+            $this->db->insert('pdf_image', $save);
+        
+	}
+
+	function get_ppt_active()
+	{
+
+		return $this->db->select('*')->where('status', 1)->get('ppt_upload')->row();
+	}
+
+	function insert_pdf($pdf_image_name){
+
+		$this->db->where('pdf_image_id', 1)->set('pdf_image_name', $pdf_image_name)->update('pdf_image');
+	
+		}
+
 
 }
  

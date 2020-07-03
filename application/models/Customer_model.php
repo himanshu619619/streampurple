@@ -561,7 +561,7 @@ public function save_customer_profile($data=array()){
           $wrq = 0;
         }
    
-       $this->db->insert('answers', ['answers'=>$value, 'question_id'=>$key, 'profile_id'=>$save['profile_id'], 'wrq'=>$wrq]);
+       $this->db->insert('answers', ['answers'=>$value, 'question_id'=>$key, 'vote_id'=>$save['vote_id'], 'profile_id'=>$save['profile_id'], 'wrq'=>$wrq]);
     }
 
      $vote_ids =  $this->db->select('vote_id')->where('status', 1)->get('vote_name')->row();
@@ -592,6 +592,20 @@ public function save_customer_profile($data=array()){
 
           return $this->db->select("vote_status")->where("vote_status_id", 2)->get('vote_status')->row();
         }
+
+         function get_ppt_button(){
+
+          return $this->db->select("vote_status")->where("vote_status_id", 3)->get('vote_status')->row();
+        }
+
+        function get_pdf_image(){
+
+          return $this->db->select("*")->where("pdf_image_id", 1)->get('pdf_image')->row();
+        }
+
+       
+
+        
 
   
 }

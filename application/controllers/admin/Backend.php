@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+
 class Backend extends Admin_Controller
 {
 
@@ -926,6 +927,24 @@ function logout()
 		// echo $vote_result;
 	}
 
+	function ppt_update_status(){
+		
+		$ppt_result = $this->input->post('ppt_status');
+		
+		echo $this->Admin_model->status_ppt($ppt_result);
+		
+		// echo $vote_result;
+	}
+
+	function insert_pdf(){
+		
+		$pdf_image_name = $this->input->post('pdf_image_name');
+		
+	 $this->Admin_model->insert_pdf($pdf_image_name);
+		
+		// echo $vote_result;
+	}
+
 
 		function voting_result()
 		{
@@ -947,7 +966,7 @@ function logout()
 
 			$data= $this->data;
 			$data['page_title'] = 'Add announcement';
-			$data['form_action'] = 'Admin/Backend/add_announcement';
+			$data['form_action'] = 'admin/Backend/add_announcement';
 			$data['add_announcement'] = $this->Admin_model->get_announcement();
 			$data['announcement_name'] = $data['add_announcement']->announcement_name;
 
@@ -1113,8 +1132,30 @@ function logout()
 			$data['ppt'] = $this->Admin_model->get_ppt();
 			//print_r($data['ppt']);exit();
 
-		
+			$vote_statuss =  $this->Admin_model->hide_PPT();
+			$data['vote_status_status'] = $vote_statuss->vote_status;
 
+			$active_ppt = $this->Admin_model->get_ppt_active();
+   
+			//print_r( $active_ppt->ppt_name);exit();
+			// $this->Admin_model->table_emp();
+			
+			//  $target_path = base_url('assets/theme/images/ppt');
+			// $target_path2 = base_url('assets/theme/images/ppt/image')."/";
+			// $filepathto = $target_path.'/'. $active_ppt->ppt_name;
+			// $imagick = new Imagick();
+			// $imagick->readImage($filepathto );
+			// $count = $imagick->getNumberImages();
+			// for ($x = 1;$x <= $imagick->getNumberImages(); $x++) {
+			//   $imagick->previousImage();
+			//   $imagick->writeImage('ppt/img'.$count.'.jpg');
+			//   $save['pdf_image_name'] = "img'.$count.'.jpg";
+			//   $save['count'] = $count;
+			//   $count--;
+			//    $this->Admin_model->save_pdf_image($save);
+			// }
+	
+		
 
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		 $this->form_validation->set_rules('name','  name','required');
@@ -1124,6 +1165,9 @@ function logout()
 		} else{
 
 			
+			
+			
+
 			$config['upload_path']          = './assets/theme/images/ppt';
 			$config['allowed_types']        = '*';
 			 $config['remove_spaces'] = TRUE;
@@ -1132,14 +1176,32 @@ function logout()
 			// $config['max_height']           = 768;
 			//$config['encrypt_name'] = TRUE;
 			$this->load->library('upload', $config);
-
-			//print_r($_FILES); exit();
+//print_r($_FILES); exit();
 			if (!$this->upload->do_upload('ppt_name')) {
 				$error = array('error' => $this->upload->display_errors());
 			} else {
 				$fileData1 = $this->upload->data();
 			}
+
+			// $target_path = base_url('assets/theme/images/ppt');
+			// $target_path2 = base_url('assets/theme/images/ppt/image')."/";
+			// $filepathto = $target_path.'/'. $_FILES['ppt_name']['name'];
+			// $imagick = new Imagick();
+			// $imagick->readImage($filepathto );
+			// $count = $imagick->getNumberImages();
+			// for ($x = 1;$x <= $imagick->getNumberImages(); $x++) {
+			//   $imagick->previousImage();
+			//   $imagick->writeImage('ppt/img'.$count.'.jpg');
+			//  $save['pdf_image_name'] = "img'.$count.'.jpg";
+			//   $save['count'] = $count;
+			//   $save['ppt_name'] = $_FILES['ppt_name']['name'];
+			//   $count--;
+			//    $this->Admin_model->save_pdf_image($save);
+			// }
+	
+ 
 			
+
 				//print_r($th
 			$save = array();
 			if (@$fileData1['file_name']) {
@@ -1166,8 +1228,51 @@ function logout()
 		redirect('admin/Backend/ppt_upload');
 	}
 
+	function get_results()
+	{
+		$data =$this->data;
+		$data['page_title'] = 'User Result';
+		$data['get_vote_active'] = $this->Admin_model->get_vote_active();
+		$data['user'] = $this->Admin_model->get_user_details();
+		$user_option = array('' =>'---select---' );
+		foreach ($data['user'] as $value) {
+			$user_option[$value->profile_id] = $value->username;
+		}	$data['user_option'] = $user_option;
+
+		$data['vote_name'] = $this->Admin_model->get_voting_name();
+		//print_r($data['vote_name']); exit();
+		$vote_option = array('' =>'---select---' );
+		foreach ($data['vote_name'] as $value) {
+			$vote_option[$value->vote_id] = $value->vote_name;
+		}	$data['vote_option'] = $vote_option;
 
 
+		//print_r($data['user_option']); exit();
+		$data['result'] = $this->Admin_model->get_user_resultsss();
 
+		$this->view('get_results', $data);
+
+	}
+
+	function get_user_resultss(){
+		$save = $this->input->post('profile_id');
+		//print_r($save); exit();
+		$result = $this->Admin_model->get_user_results($save);
+		print_r($result);
+	}
+
+	public function save_img() {
+			print_r($this->input->post); exit();
+		$data = $this->input->post('hid_img');
+			$file = md5(uniqid()) . '.png';
+		
+			// remove "data:image/png;base64,"
+			//$uri =  substr($data,strpos($data,",")+1);
+		
+			// save to file in uploads folder of codeigniter
+			file_put_contents('./new/'.$file, $data );
+		
+		}
+		
 
 }

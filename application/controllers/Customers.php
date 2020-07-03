@@ -52,6 +52,9 @@ class Customers extends Customers_Controller {
   $data['announcement'] = $this->Customer_model->get_announcement();
     $data['banner'] = $this->Customer_model->get_banners();
       $data['ppt'] = $this->Customer_model->get_ppt();
+      $data['get_pdf_image'] = $this->Customer_model->get_pdf_image();
+      $data['get_user_detail']  = $this->customer_ref->get_user_detail();
+      
     // print_r($data['banner']); exit();
     $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
     $this->form_validation->set_rules('name','name','trim|required');
@@ -338,8 +341,11 @@ public function change_password(){
           else{
      
          $save['profile_id'] = $this->customer_ref->get_profile_id();
+         $save['vote_id'] =  $data['all_questions']['0']->vote_id;
          $save['result']  = $this->input->post();
+         //print_r($save); exit();
          $result = $this->Customer_model->save_answers($save);
+         
         $this->session->set_flashdata('success', 'post Successfully!');
         redirect('Customers/give_vote');
 
@@ -368,6 +374,24 @@ public function change_password(){
             
            print_r($vote_button->vote_status);
         }
+
+          function get_ppt_buttons(){
+         $vote_button = $this->Customer_model->get_ppt_button();
+            
+           print_r($vote_button->vote_status);
+        }
+
+        function get_pdf_image_name(){
+          $get_pdf_image_name = $this->Customer_model->get_pdf_image();
+             
+            print_r($get_pdf_image_name->pdf_image_name);
+         }
+
+         function getmessage(){
+          $getmessage = $this->Customer_model->get_announcement();
+             
+            print_r($getmessage->announcement_name);
+         }
 
 
 }

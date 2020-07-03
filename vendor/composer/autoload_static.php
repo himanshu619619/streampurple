@@ -11,6 +11,19 @@ class ComposerStaticInitbc7efd066473f5f6d49f52762d5f0b3c
     );
 
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Spatie\\PdfToImage\\' => 18,
+        ),
+        'P' => 
+        array (
+            'PhpOffice\\PhpPresentation\\' => 26,
+            'PhpOffice\\Common\\' => 17,
+        ),
+        'N' => 
+        array (
+            'NcJoes\\OfficeConverter\\' => 23,
+        ),
         'F' => 
         array (
             'Facebook\\' => 9,
@@ -18,6 +31,22 @@ class ComposerStaticInitbc7efd066473f5f6d49f52762d5f0b3c
     );
 
     public static $prefixDirsPsr4 = array (
+        'Spatie\\PdfToImage\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/pdf-to-image/src',
+        ),
+        'PhpOffice\\PhpPresentation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/phppresentation/src/PhpPresentation',
+        ),
+        'PhpOffice\\Common\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/common/src/Common',
+        ),
+        'NcJoes\\OfficeConverter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ncjoes/office-converter/src/OfficeConverter',
+        ),
         'Facebook\\' => 
         array (
             0 => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook',
@@ -34,12 +63,17 @@ class ComposerStaticInitbc7efd066473f5f6d49f52762d5f0b3c
         ),
     );
 
+    public static $classMap = array (
+        'PclZip' => __DIR__ . '/..' . '/pclzip/pclzip/pclzip.lib.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitbc7efd066473f5f6d49f52762d5f0b3c::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitbc7efd066473f5f6d49f52762d5f0b3c::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitbc7efd066473f5f6d49f52762d5f0b3c::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitbc7efd066473f5f6d49f52762d5f0b3c::$classMap;
 
         }, null, ClassLoader::class);
     }
