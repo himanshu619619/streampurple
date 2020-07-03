@@ -23,23 +23,40 @@ class Config
     // ------------------------------------------------------------------------
     // General Settings
     // ------------------------------------------------------------------------
-    const BASE_URL        = 'http://localhost/stream/';
+<<<<<<< HEAD
+    const BASE_URL        = 'http://vishnupandey.in/stream/';
+    const LANGUAGE        = 'english';
+    const DEBUG_MODE      = false;
+    const ENABLE_HOOKS    = false;
+    const COKKIES_DOMAIN  = '.vishnupandey.in';
+    const COKKIES_PATH    = '/stream/';
+    const COKKIES_PREFIX  = 'stream';
+    const COKKIES_NAME    = 'stream';
+=======
+    const BASE_URL        = 'http://localhost/aoes/';
     const LANGUAGE        = 'english';
     const DEBUG_MODE      = false;
     const ENABLE_HOOKS    = false;
     const COKKIES_DOMAIN  = 'localhost';
-    const COKKIES_PATH    = '/stream/';
-    const COKKIES_PREFIX  = 'stream';
-    const COKKIES_NAME    = 'stream';
+    const COKKIES_PATH    = '/aoes/';
+    const COKKIES_PREFIX  = 'aoes';
+    const COKKIES_NAME    = 'aoes';
+>>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
 
 
     // ------------------------------------------------------------------------
     // Database Settings
     // ------------------------------------------------------------------------
     const DB_HOST       = 'localhost';
-    const DB_NAME       = 'stream';
+<<<<<<< HEAD
+    const DB_NAME       = 'shivamas_stream';
+    const DB_USERNAME   = 'shivamas_stream';
+    const DB_PASSWORD   = '7cm@619619';
+=======
+    const DB_NAME       = 'aoes';
     const DB_USERNAME   = 'root';
     const DB_PASSWORD   = '';
+>>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
     const DB_DRIVER     = 'mysqli';
     const DB_DNS        = ''; // require if DB_DRIVER is pdo like (mysql:host=localhost;dbname=ci_goconsult) otherwise it can be blank.
 

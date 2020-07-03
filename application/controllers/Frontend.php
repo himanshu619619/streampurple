@@ -294,6 +294,7 @@ class Frontend extends Front_Controller
     {
         $data = $this->data;
         $data['page_title'] = "contact";
+         $data['form_action'] = "Frontend/send";
         $this->view('contact', $data);
     }
 
@@ -304,7 +305,7 @@ class Frontend extends Front_Controller
         $sendemail = "himanshu@7continentsmedia.com";
         $save['name'] = $this->input->post('name');
         $save['email'] = $this->input->post('email');
-        $save['phone'] = $this->input->post('company');
+        // $save['phone'] = $this->input->post('phone');
         $save['message'] = $this->input->post('message');
         $save['subject'] = $this->input->post('subject');
         //Load email library
@@ -314,7 +315,7 @@ class Frontend extends Front_Controller
         $this->email->from($save['email'], $save['name']);
         $this->email->to($sendemail);
         $this->email->subject($save['subject']);
-        $all = 'Name:' . set_value('name') . "\n<br>" . 'Email :' . ' ' . set_value('email') . "\n<br>" . 'Company :' . ' ' . set_value('phone') . "\n<br>" . 'Message :' . ' ' . set_value('message');
+        $all = 'Name:' . set_value('name') . "\n<br>" . 'Email :' . ' ' . set_value('email') . "\n<br>" . 'Message :' . ' ' . set_value('message');
         $this->email->message($all);
 
         // $this->email->message($save['message']);
@@ -327,7 +328,7 @@ class Frontend extends Front_Controller
             $this->session->set_flashdata("email_sent", "You have encountered an error");
         }
 
-        redirect('Frontend/get_your_complaint_status');
+        redirect('Frontend/contact');
     }
 
     public function reset_forgate_password()
@@ -523,13 +524,75 @@ class Frontend extends Front_Controller
     {
 
         $data = $this->data;
-        @$data['page_title'] = "AccuPrints | Printing Gift, Printing Services in Gurgaon, Printing vendors in Gurgaon";
-        @$data['meta_description'] = "AccuPrints is the printers in Gurgaon, T-shirt printer in Gurgaon, Bag printer in Gurgaon, Digital Printing Service in Gurgaon, Identity cards Printers Company based in Gurgaon, India. Call now for your Printing Services needs";
-        @$data['meta_keywords'] = "printers in Gurgaon, T-shirt  printer in Gurgaon, Printing Gift , Bag  printer in Gurgaon, Digital Printing Service in Gurgaon, Identity cards printers in Gurgaon, Lanyard printer in Gurgaon , Sticker  printer in Gurgaon, Printers for Digital Lanyard in Gurgaon, Printers for Mug";
+        @$data['page_title'] = "aoes";
+        @$data['meta_description'] = "aoes";
+        @$data['meta_keywords'] = "aoes";
 
         // print_r($data['products']); exit();
         $this->view('aboutus', $data);
     }
+
+
+     public function objective()
+    {
+
+        $data = $this->data;
+        @$data['page_title'] = "aoes";
+        @$data['meta_description'] = "aoes";
+        @$data['meta_keywords'] = "aoes";
+
+        // print_r($data['products']); exit();
+        $this->view('objective', $data);
+    }
+
+
+     public function membership()
+    {
+
+        $data = $this->data;
+        @$data['page_title'] = "aoes";
+        @$data['meta_description'] = "aoes";
+        @$data['meta_keywords'] = "aoes";
+
+        // print_r($data['products']); exit();
+        $this->view('membership', $data);
+    }
+
+
+      public function news()
+    {
+
+        $data = $this->data;
+        @$data['page_title'] = "aoes";
+        @$data['meta_description'] = "aoes";
+        @$data['meta_keywords'] = "aoes";
+
+        // print_r($data['products']); exit();
+        $this->view('news', $data);
+    }
+      public function office()
+    {
+
+        $data = $this->data;
+        @$data['page_title'] = "aoes";
+        @$data['meta_description'] = "aoes";
+        @$data['meta_keywords'] = "aoes";
+
+        // print_r($data['products']); exit();
+        $this->view('office', $data);
+    }
+      public function newsletter()
+    {
+
+        $data = $this->data;
+        @$data['page_title'] = "aoes";
+        @$data['meta_description'] = "aoes";
+        @$data['meta_keywords'] = "aoes";
+
+        // print_r($data['products']); exit();
+        $this->view('newsletter', $data);
+    }
+ 
 
     public function clients()
     {
