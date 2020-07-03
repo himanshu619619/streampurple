@@ -5,10 +5,6 @@
 </style>
 
 
-
-
-
-
 <div id="page-wrapper">
             <div class="container-fluid">
                <div class="row bg-titles">
@@ -19,7 +15,7 @@
                   <!-- /.page title -->
                  
                </div>
-                <img src="<?php echo base_url('assets/theme');?>/images/header_banner/<?php echo $banner->banner_name; ?>" class="img-responsive" style="filter: border: 2px solid rgba(0,0,0,0.1);">
+                <img src="<?php echo base_url('assets/theme');?>/images/header_banner/<?php echo $banner->banner_name; ?>" class="img-responsive" style=" border: 2px solid rgba(0,0,0,0.1);">
               <!-- .row -->
              <div class="row testing" style="display:flex;">  
             

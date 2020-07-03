@@ -1246,9 +1246,26 @@ function logout()
 			$vote_option[$value->vote_id] = $value->vote_name;
 		}	$data['vote_option'] = $vote_option;
 
+<<<<<<< HEAD
 
 		//print_r($data['user_option']); exit();
 		$data['result'] = $this->Admin_model->get_user_resultsss();
+=======
+
+		//print_r($data['user_option']); exit();
+		$data['result'] = $this->Admin_model->get_user_resultsss();
+
+		$this->view('get_results', $data);
+
+	}
+
+	function get_user_resultss(){
+		$save = $this->input->post('profile_id');
+		//print_r($save); exit();
+		$result = $this->Admin_model->get_user_results($save);
+		print_r($result);
+	}
+>>>>>>> 21a53b96bb01a4a35e12a05f1ff8768e1e05759d
 
 		$this->view('get_results', $data);
 

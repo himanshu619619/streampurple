@@ -23,21 +23,21 @@ class Config
     // ------------------------------------------------------------------------
     // General Settings
     // ------------------------------------------------------------------------
-    const BASE_URL        = 'http://localhost/stream/';
+    const BASE_URL        = 'http://localhost/aoes/';
     const LANGUAGE        = 'english';
     const DEBUG_MODE      = false;
     const ENABLE_HOOKS    = false;
     const COKKIES_DOMAIN  = 'localhost';
-    const COKKIES_PATH    = '/stream/';
-    const COKKIES_PREFIX  = 'stream';
-    const COKKIES_NAME    = 'stream';
+    const COKKIES_PATH    = '/aoes/';
+    const COKKIES_PREFIX  = 'aoes';
+    const COKKIES_NAME    = 'aoes';
 
 
     // ------------------------------------------------------------------------
     // Database Settings
     // ------------------------------------------------------------------------
     const DB_HOST       = 'localhost';
-    const DB_NAME       = 'stream';
+    const DB_NAME       = 'aoes';
     const DB_USERNAME   = 'root';
     const DB_PASSWORD   = '';
     const DB_DRIVER     = 'mysqli';
