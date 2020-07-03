@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /aoes/
+  RewriteBase /stream/
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)$ /aoes/index.php/$1 [L]
+  RewriteRule ^(.*)$ /stream/index.php/$1 [L]
 </IfModule>

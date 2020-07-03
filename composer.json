@@ -12,10 +12,7 @@
 	},
 	"require": {
 		"php": ">=5.2.4",
-		"facebook/graph-sdk": "^5.7",
-		"ncjoes/office-converter": "^1.0",
-		"phpoffice/phppresentation": "^0.9.0",
-		"spatie/pdf-to-image": "^2.0"
+		"facebook/graph-sdk": "^5.7"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"

@@ -103,11 +103,7 @@
 
 
 <script>
-<<<<<<< HEAD
 setInterval(hide_vote_button, 100); 
-=======
-setInterval(hide_vote_button, 1000); 
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
 function hide_vote_button() {
     var vote_status = 1;
      $.ajax({
@@ -131,11 +127,7 @@ function hide_vote_button() {
 </script>
 
 <script>
-<<<<<<< HEAD
 setInterval(hide_result_button, 100); 
-=======
-setInterval(hide_result_button, 1000); 
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
 function hide_result_button() {
     var vote_status = 1;
      $.ajax({

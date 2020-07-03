@@ -53,13 +53,7 @@ class Customers extends Customers_Controller {
     $data['banner'] = $this->Customer_model->get_banners();
         $data['get_user_detail']  = $this->customer_ref->get_user_detail();
       $data['ppt'] = $this->Customer_model->get_ppt();
-<<<<<<< HEAD
        $data['get_pdf_image'] = $this->Customer_model->get_pdf_image();
-=======
-      $data['get_pdf_image'] = $this->Customer_model->get_pdf_image();
-      $data['get_user_detail']  = $this->customer_ref->get_user_detail();
-      
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
     // print_r($data['banner']); exit();
     $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
     $this->form_validation->set_rules('name','name','trim|required');
@@ -385,24 +379,14 @@ public function change_password(){
             
            print_r($vote_button->vote_status);
         }
-<<<<<<< HEAD
         
           function get_pdf_image_name(){
-=======
-
-        function get_pdf_image_name(){
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
           $get_pdf_image_name = $this->Customer_model->get_pdf_image();
              
             print_r($get_pdf_image_name->pdf_image_name);
          }
-<<<<<<< HEAD
          
           function getmessage(){
-=======
-
-         function getmessage(){
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
           $getmessage = $this->Customer_model->get_announcement();
              
             print_r($getmessage->announcement_name);

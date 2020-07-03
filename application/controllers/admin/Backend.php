@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
 class Backend extends Admin_Controller
 {
 
@@ -936,18 +935,6 @@ function logout()
 		// echo $vote_result;
 	}
 
-<<<<<<< HEAD
-=======
-	function insert_pdf(){
-		
-		$pdf_image_name = $this->input->post('pdf_image_name');
-		
-	 $this->Admin_model->insert_pdf($pdf_image_name);
-		
-		// echo $vote_result;
-	}
-
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
 
 		function voting_result()
 		{
@@ -1138,7 +1125,6 @@ function logout()
 
 			$vote_statuss =  $this->Admin_model->hide_PPT();
 			$data['vote_status_status'] = $vote_statuss->vote_status;
-<<<<<<< HEAD
 
             $data['active_ppt'] = $this->Admin_model->get_ppt_active();
    
@@ -1158,30 +1144,7 @@ function logout()
 //           $count--;
 //           $this->Admin_model->save_pdf_image($save);
 //         }
-=======
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
 
-			$active_ppt = $this->Admin_model->get_ppt_active();
-   
-			//print_r( $active_ppt->ppt_name);exit();
-			// $this->Admin_model->table_emp();
-			
-			//  $target_path = base_url('assets/theme/images/ppt');
-			// $target_path2 = base_url('assets/theme/images/ppt/image')."/";
-			// $filepathto = $target_path.'/'. $active_ppt->ppt_name;
-			// $imagick = new Imagick();
-			// $imagick->readImage($filepathto );
-			// $count = $imagick->getNumberImages();
-			// for ($x = 1;$x <= $imagick->getNumberImages(); $x++) {
-			//   $imagick->previousImage();
-			//   $imagick->writeImage('ppt/img'.$count.'.jpg');
-			//   $save['pdf_image_name'] = "img'.$count.'.jpg";
-			//   $save['count'] = $count;
-			//   $count--;
-			//    $this->Admin_model->save_pdf_image($save);
-			// }
-	
-		
 
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		 $this->form_validation->set_rules('name','  name','required');
@@ -1191,9 +1154,6 @@ function logout()
 		} else{
 
 			
-			
-			
-
 			$config['upload_path']          = './assets/theme/images/ppt';
 			$config['allowed_types']        = '*';
 			 $config['remove_spaces'] = TRUE;
@@ -1209,32 +1169,11 @@ function logout()
 				$fileData1 = $this->upload->data();
 			}
 
-<<<<<<< HEAD
               
  	
 	
 			
-=======
-			// $target_path = base_url('assets/theme/images/ppt');
-			// $target_path2 = base_url('assets/theme/images/ppt/image')."/";
-			// $filepathto = $target_path.'/'. $_FILES['ppt_name']['name'];
-			// $imagick = new Imagick();
-			// $imagick->readImage($filepathto );
-			// $count = $imagick->getNumberImages();
-			// for ($x = 1;$x <= $imagick->getNumberImages(); $x++) {
-			//   $imagick->previousImage();
-			//   $imagick->writeImage('ppt/img'.$count.'.jpg');
-			//  $save['pdf_image_name'] = "img'.$count.'.jpg";
-			//   $save['count'] = $count;
-			//   $save['ppt_name'] = $_FILES['ppt_name']['name'];
-			//   $count--;
-			//    $this->Admin_model->save_pdf_image($save);
-			// }
-	
- 
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
 			
-
 				//print_r($th
 			$save = array();
 			if (@$fileData1['file_name']) {
@@ -1279,14 +1218,6 @@ function logout()
 			$vote_option[$value->vote_id] = $value->vote_name;
 		}	$data['vote_option'] = $vote_option;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-		//print_r($data['user_option']); exit();
-		$data['result'] = $this->Admin_model->get_user_resultsss();
-=======
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
 
 		//print_r($data['user_option']); exit();
 		$data['result'] = $this->Admin_model->get_user_resultsss();
@@ -1294,7 +1225,6 @@ function logout()
 		$this->view('get_results', $data);
 
 	}
-<<<<<<< HEAD
 
 	function get_user_resultss(){
 		$save = $this->input->post('profile_id');
@@ -1310,40 +1240,7 @@ function insert_pdf(){
 	 $this->Admin_model->insert_pdf($pdf_image_name);
 		
 		// echo $vote_result;
-=======
-
-	function get_user_resultss(){
-		$save = $this->input->post('profile_id');
-		//print_r($save); exit();
-		$result = $this->Admin_model->get_user_results($save);
-		print_r($result);
-	}
->>>>>>> 21a53b96bb01a4a35e12a05f1ff8768e1e05759d
-
-		$this->view('get_results', $data);
-
 	}
 
-	function get_user_resultss(){
-		$save = $this->input->post('profile_id');
-		//print_r($save); exit();
-		$result = $this->Admin_model->get_user_results($save);
-		print_r($result);
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
-	}
-
-	public function save_img() {
-			print_r($this->input->post); exit();
-		$data = $this->input->post('hid_img');
-			$file = md5(uniqid()) . '.png';
-		
-			// remove "data:image/png;base64,"
-			//$uri =  substr($data,strpos($data,",")+1);
-		
-			// save to file in uploads folder of codeigniter
-			file_put_contents('./new/'.$file, $data );
-		
-		}
-		
 
 }

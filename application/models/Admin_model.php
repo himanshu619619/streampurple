@@ -380,7 +380,6 @@ FROM `wr_questions` wrq where wrq.vote_id = '".$vote_id->vote_id."' AND wrq.stat
 		//print_r($vote_name); exit();
 		return $this->db->select("*")->where("vote_id", $vote_id->vote_id)->get("answers")->result();
 	}
-<<<<<<< HEAD
 	
 	function table_emp(){
 		
@@ -397,37 +396,11 @@ FROM `wr_questions` wrq where wrq.vote_id = '".$vote_id->vote_id."' AND wrq.stat
 		}
 
 	}
-=======
-
-
-	function table_emp(){
-		
-		$this->db->empty_table('pdf_image'); 	
-}
-
-	function save_pdf_image($save){
-		
-		
-            $this->db->insert('pdf_image', $save);
-        
-	}
-
-	function get_ppt_active()
-	{
-
-		return $this->db->select('*')->where('status', 1)->get('ppt_upload')->row();
-	}
-
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
 	function insert_pdf($pdf_image_name){
 
 		$this->db->where('pdf_image_id', 1)->set('pdf_image_name', $pdf_image_name)->update('pdf_image');
 	
 		}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
 }
  

@@ -597,27 +597,12 @@ public function save_customer_profile($data=array()){
 
           return $this->db->select("vote_status")->where("vote_status_id", 3)->get('vote_status')->row();
         }
-<<<<<<< HEAD
         
          function get_pdf_image(){
-=======
-
-<<<<<<< HEAD
-        function get_pdf_image(){
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
 
           return $this->db->select("*")->where("pdf_image_id", 1)->get('pdf_image')->row();
         }
 
-<<<<<<< HEAD
 
-=======
-       
-
-        
-
-=======
->>>>>>> 21a53b96bb01a4a35e12a05f1ff8768e1e05759d
->>>>>>> acffbb19d83beea1a5bc28fe435ea612c47d05b1
   
 }

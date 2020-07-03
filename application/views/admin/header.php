@@ -56,7 +56,7 @@
 
 </head>
 
-<body > 
+<body>
 
     <!-- Preloader -->
     <div class="preloader">
