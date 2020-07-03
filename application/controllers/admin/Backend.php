@@ -926,6 +926,15 @@ function logout()
 		// echo $vote_result;
 	}
 
+	function ppt_update_status(){
+		
+		$ppt_result = $this->input->post('ppt_status');
+		
+		echo $this->Admin_model->status_ppt($ppt_result);
+		
+		// echo $vote_result;
+	}
+
 
 		function voting_result()
 		{
@@ -1113,7 +1122,8 @@ function logout()
 			$data['ppt'] = $this->Admin_model->get_ppt();
 			//print_r($data['ppt']);exit();
 
-		
+			$vote_statuss =  $this->Admin_model->hide_PPT();
+			$data['vote_status_status'] = $vote_statuss->vote_status;
 
 
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
@@ -1166,7 +1176,38 @@ function logout()
 		redirect('admin/Backend/ppt_upload');
 	}
 
+	function get_results()
+	{
+		$data =$this->data;
+		$data['page_title'] = 'User Result';
+		$data['get_vote_active'] = $this->Admin_model->get_vote_active();
+		$data['user'] = $this->Admin_model->get_user_details();
+		$user_option = array('' =>'---select---' );
+		foreach ($data['user'] as $value) {
+			$user_option[$value->profile_id] = $value->username;
+		}	$data['user_option'] = $user_option;
 
+		$data['vote_name'] = $this->Admin_model->get_voting_name();
+		//print_r($data['vote_name']); exit();
+		$vote_option = array('' =>'---select---' );
+		foreach ($data['vote_name'] as $value) {
+			$vote_option[$value->vote_id] = $value->vote_name;
+		}	$data['vote_option'] = $vote_option;
+
+
+		//print_r($data['user_option']); exit();
+		$data['result'] = $this->Admin_model->get_user_resultsss();
+
+		$this->view('get_results', $data);
+
+	}
+
+	function get_user_resultss(){
+		$save = $this->input->post('profile_id');
+		//print_r($save); exit();
+		$result = $this->Admin_model->get_user_results($save);
+		print_r($result);
+	}
 
 
 

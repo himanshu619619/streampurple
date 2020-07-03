@@ -338,8 +338,11 @@ public function change_password(){
           else{
      
          $save['profile_id'] = $this->customer_ref->get_profile_id();
+         $save['vote_id'] =  $data['all_questions']['0']->vote_id;
          $save['result']  = $this->input->post();
+         //print_r($save); exit();
          $result = $this->Customer_model->save_answers($save);
+         
         $this->session->set_flashdata('success', 'post Successfully!');
         redirect('Customers/give_vote');
 
@@ -365,6 +368,12 @@ public function change_password(){
 
          function get_result_buttons(){
          $vote_button = $this->Customer_model->get_result_button();
+            
+           print_r($vote_button->vote_status);
+        }
+
+          function get_ppt_buttons(){
+         $vote_button = $this->Customer_model->get_ppt_button();
             
            print_r($vote_button->vote_status);
         }

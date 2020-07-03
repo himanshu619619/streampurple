@@ -99,6 +99,8 @@
 
                         </div>
                     </div>
+
+                    
                 </div>
               
                 <!-- /.row -->
@@ -129,8 +131,17 @@
 
                                   </div>
                               </div>
-                             <div class="col-lg-6">
+                             <div class="col-lg-4">
+
                              </div>
+                             <div class="col-lg-2">
+   
+  <?php if($vote_status_status == 1){     ?>              
+                <button type="button" class="btn btn-danger" id="vote" onclick="status_PPT()" >STOP PPT</button>
+                <?php   } else { ?>  
+                  <button type="button" class="btn btn-success" id="vote" onclick="status_PPT()" >START PPT</button>
+                  <?php   } ?>  
+</div>
                               <div class="col-lg-2">
                                   <div class="">
                                      
@@ -250,3 +261,25 @@
 
  <script src="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"></script>
   <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <script>
+<?php echo 'var ppt_status = '.$vote_status_status.';'; ?>
+function status_PPT() {
+     $.ajax({
+             type: "POST",
+             url: "<?php echo  base_url('admin/Backend/ppt_update_status');?>",
+             data: {ppt_status:ppt_status},
+          
+             success: function(data){
+                // alert(data);
+                ppt_status = data;
+                if (data == 1) {
+                  $('#vote').html('STOP PPT').removeClass('btn-success').addClass('btn-danger');
+
+                } else {
+                  $('#vote').html('START PPT').removeClass('btn-danger').addClass('btn-success');
+                }  
+             },
+             error:function(e, ts, et){ alert(ts.responseText);}
+         });
+    }
+</script>

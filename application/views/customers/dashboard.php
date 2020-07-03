@@ -25,15 +25,48 @@
                         <div class="video-section">
                        
 
-                     <div id="swap-video" class="swap-video-left1">
-              <div id="media">
-               
-                <iframe id="" src="https://webcastlive.co.in/player/play_sc.php?event_id=demo_purplewave002" width="100%" height="300px" marginheight="0" frameborder="0" scrolling="no"  allowfullscreen="allowfullscreen"></iframe>
-              </div>
-            </div>
+                    <div id="bg_player_location">
+
+<a href="http://www.adobe.com/go/getflashplayer">
+
+<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+
+</a>
+
+</div>
+
+<script type="text/javascript" src="http://player.bc.cdn.bitgravity.com/10/jquery.js"></script>
+
+<script type="text/javascript" src="http://player.bc.cdn.bitgravity.com/10/functions.js"></script>
+
+<script type="text/javascript" src="http://player.bc.cdn.bitgravity.com/10/swfobject.js"></script>
+
+<script type="text/javascript">
+
+var flashVars = {};
+
+flashVars.File = "http://cam.live.cdn.bitgravity.com/cam/live/Patna_Sahib_128";
+
+flashVars.Mode = "live";
+
+flashVars.AutoPlay = "true";
+
+flashVars.streamType = "live";
+
+flashVars.ForceReconnect = "0";
+
+var params = {};
+
+params.allowFullScreen = "true";
+
+params.allowScriptAccess = "always";
+
+swfobject.embedSWF(info.BitGravityswf, "bg_player_location", "640", "500", info.swfVersionStr, info.xiSwfUrlStr, flashVars, params, attributes);
+
+</script>
                     </div>
    </div>
- <div class="col-md-6">
+ <div class="col-md-6" id="hide_ppt_button">
  <iframe src='https://view.officeapps.live.com/op/embed.aspx?src=<?php echo base_url('assets/theme/images/ppt'); echo "/"; echo $ppt->ppt_name; ?>' width='100%' height='300px' frameborder='0'></iframe>
  </div>
 
@@ -92,4 +125,26 @@
             </div>
 
         </div>
-  
+  <script>
+setInterval(hide_ppt_button, 3000); 
+function hide_ppt_button() {
+    var ppt_status = 1;
+     $.ajax({
+             type: "POST",
+             url: "<?php echo base_url('customers/get_ppt_buttons');?>",
+             data: {ppt_status},
+          
+             success: function(data){
+                
+                 if(data == 1){
+                      $("#hide_ppt_button").show();
+                }else{
+                    //alert(data);
+                     $("#hide_ppt_button").hide();
+                 }
+
+             },
+             error:function(e, ts, et){ alert(ts.responseText);}
+         });
+    }
+</script>
